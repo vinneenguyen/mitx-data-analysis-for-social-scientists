@@ -1,18 +1,69 @@
----
-title: "R Notebook"
-output: html_notebook
----
-
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+# 14.310x: Data Analysis for Social Scientists - Homework #5
+Welcome to your fifth homework assignment! You will have about one week to work through the assignment. We encourage you to get an early start, particularly if you still feel you need more experience using R. We have provided this PDF copy of the assignment so that you can print and work through the assignment offline. You can also go online directly to complete the assignment. If you choose to work on the assignment using this PDF, please go back to the online platform to submit your answers based on the output produced. Some of the questions we are asking are not easily solvable using math so we recommend you to use your R knowledge and the content of previous homeworks to find numeric solutions.
+Good luck :)!
 
 ```{r}
-plot(cars)
+# Preliminaries
+rm(list = ls())
+getwd()
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+A manufacturer receives a shipment of 100 parts from a vendor. The shipment will be unacceptable if more than five of the parts are defective. The manufacturer is going to randomly select K parts from the shipment for inspection, and the shipment will be accepted if no defective parts are found in the sample.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+1. How large does K have to be to ensure that the probability that the manufacturer accepts an unacceptable shipment is less than 0.1?
+Hint: We recommend that use R to plug in different values of K.
+(a) 12
+(b) 22
+(c) 32
+(d) 42
+```{r}
+# Manufacturer most likely to accept unacceptable shipment when number of defective
+parts smallest possible (6)
+cat("K - Probability of mistake\n")
+for (k in 1:94) {
+  # Probability of accepting unacceptable shipment = (94 choose k) / (100 choose k)
+  p_mistake <- factorial(100-k) / (95*96*97*98*99*100*factorial(94-k))
+  cat(k, p_mistake, "\n")
+  if (p_mistake < 0.1) break # smallest K possible
+}
+```
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+2. Now suppose that the manufacturer decides to accept the shipment if there is at most one defective part in the sample. How large does K have to be to ensure that the probability that the manufacturer accepts an unacceptable shipment is less than 0.1?
+```{r}
+# Similar to the previous case. Only probability of accepting unacceptable shipment
+has 1 more contributing factor associated with having 1 defective part in the sample
+cat("K - Probability of mistake\n")
+for (k in 1:94) {
+  # Probability of accepting unacceptable shipment when 0 defective parts found in
+sample = (94 choose k) / (100 choose k)
+  p_mistake0 <- factorial(100-k) / (95*96*97*98*99*100*factorial(94-k))
+  # Probability of accepting unacceptable shipment when 1 defective part found in
+sample = (6 choose 1) * (94 choose (k-1)) / (100 choose k)
+  p_mistake1 <- 6 * k * factorial(100-k) / (95*96*97*98*99*100*factorial(95-k))
+  # Total probability of accepting unacceptable shipment
+  p_mistake <- p_mistake0 + p_mistake1
+  cat(k, p_mistake, "\n")
+  if (p_mistake < 0.1) break # smallest K possible
+}
+```
+
+4. Let the number of chocolate chips in a certain type of cookie have a Poisson distribution. We want the probability that a randomly chosen cookie has at least two chocolate chips to be greater than 0.99. For which of the following values of the mean of the distribution is this condition assured. (Please select all that apply!)
+Hint: You may wish to try different values in R when solving this problem if you have having trouble solving the relevant equations.
+(a) 6
+(b) 7
+(c) 8
+(d) 9
+```{r}
+possible_means <- c(6, 7, 8, 9) # trials of mean/lamda
+cat("Mean - Probability of at least 2 chocolate chips - Satisfied\n")
+for (lamda in possible_means) {
+  # Probability of at least 2 chocolate chips (sum of Poisson-PMF for k = 2, 3, 4
+...)
+  p_2chocolate <- ppois(1, lamda, lower.tail = FALSE)
+  if (p_2chocolate > 0.99) {
+    cat(lamda, p_2chocolate, "OK\n")
+  }
+  else {
+    cat(lamda, p_2chocolate, "X\n")
+} }
+```

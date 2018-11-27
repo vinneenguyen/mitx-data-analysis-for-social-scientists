@@ -7,7 +7,7 @@ Course details:
 * Provider: edX
 * Start date: 11 Sep 2018
 * End date: 27 Nov 2018
-* Track: audit/non-verified track
+* Track: audit/non-verified
 
 ## Linked project
 This repository is linked with [this RStudio Cloud project](https://rstudio.cloud/project/146187).

@@ -21,7 +21,7 @@ Hint: We recommend that use R to plug in different values of K.
 (c) 32
 (d) 42
 ```{r}
-# Manufacturer most likely to accept unacceptable shipment when number of defective parts smallest possible (6)
+# Manufacturer most likely to accept unacceptable shipment when unacceptable shipment has least (6) defective parts
 cat("K - Probability of mistake\n")
 for (k in 1:94) {
   # Probability of accepting unacceptable shipment = (94 choose k) / (100 choose k)

@@ -3,7 +3,7 @@
 ## Purpose
 Enrollment in online course [Data Analysis for Social Scientists](https://www.edx.org/course/data-analysis-for-social-scientists-1).
 
-Course details:
+Course information:
 * Provider: edX
 * Start date: 11 Sep 2018
 * End date: 27 Nov 2018

@@ -21,8 +21,7 @@ Hint: We recommend that use R to plug in different values of K.
 (c) 32
 (d) 42
 ```{r}
-# Manufacturer most likely to accept unacceptable shipment when number of defective
-parts smallest possible (6)
+# Manufacturer most likely to accept unacceptable shipment when number of defective parts smallest possible (6)
 cat("K - Probability of mistake\n")
 for (k in 1:94) {
   # Probability of accepting unacceptable shipment = (94 choose k) / (100 choose k)
@@ -34,19 +33,19 @@ for (k in 1:94) {
 
 2. Now suppose that the manufacturer decides to accept the shipment if there is at most one defective part in the sample. How large does K have to be to ensure that the probability that the manufacturer accepts an unacceptable shipment is less than 0.1?
 ```{r}
-# Similar to the previous case. Only probability of accepting unacceptable shipment
-has 1 more contributing factor associated with having 1 defective part in the sample
+# Similar to the previous case. Only probability of accepting unacceptable shipment has 1 more contributing factor associated with having 1 defective part in the sample
 cat("K - Probability of mistake\n")
 for (k in 1:94) {
-  # Probability of accepting unacceptable shipment when 0 defective parts found in
-sample = (94 choose k) / (100 choose k)
+  # Probability of accepting unacceptable shipment when 0 defective parts found in sample = (94 choose k) / (100 choose k)
   p_mistake0 <- factorial(100-k) / (95*96*97*98*99*100*factorial(94-k))
-  # Probability of accepting unacceptable shipment when 1 defective part found in
-sample = (6 choose 1) * (94 choose (k-1)) / (100 choose k)
+  
+  # Probability of accepting unacceptable shipment when 1 defective part found in sample = (6 choose 1) * (94 choose (k-1)) / (100 choose k)
   p_mistake1 <- 6 * k * factorial(100-k) / (95*96*97*98*99*100*factorial(95-k))
+  
   # Total probability of accepting unacceptable shipment
   p_mistake <- p_mistake0 + p_mistake1
   cat(k, p_mistake, "\n")
+  
   if (p_mistake < 0.1) break # smallest K possible
 }
 ```
@@ -61,13 +60,13 @@ Hint: You may wish to try different values in R when solving this problem if you
 possible_means <- c(6, 7, 8, 9) # trials of mean/lamda
 cat("Mean - Probability of at least 2 chocolate chips - Satisfied\n")
 for (lamda in possible_means) {
-  # Probability of at least 2 chocolate chips (sum of Poisson-PMF for k = 2, 3, 4
-...)
+  # Probability of at least 2 chocolate chips (sum of Poisson-PMF for k = 2, 3, 4 ...)
   p_2chocolate <- ppois(1, lamda, lower.tail = FALSE)
   if (p_2chocolate > 0.99) {
     cat(lamda, p_2chocolate, "OK\n")
   }
   else {
     cat(lamda, p_2chocolate, "X\n")
-} }
+  }
+}
 ```

@@ -5,9 +5,9 @@ Enrollment in online course [Data Analysis for Social Scientists](https://www.ed
 
 Course details:
 * Provider: edX
-* Track: audit/non-verified track
 * Start date: 11 Sep 2018
 * End date: 27 Nov 2018
+* Track: audit/non-verified track
 
 ## Linked project
 This repository is linked with [this RStudio Cloud project](https://rstudio.cloud/project/146187).

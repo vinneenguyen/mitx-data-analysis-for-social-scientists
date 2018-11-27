@@ -9,4 +9,7 @@ Course details:
 * Start date: 11 Sep 2018
 * End date: 27 Nov 2018
 
-Note: registration for rstudio.cloud required to view the project
+## Linked project
+This repository is linked with [this RStudio Cloud project](https://rstudio.cloud/project/146187).
+
+Note: registration for https://rstudio.cloud required to view the project

@@ -5,6 +5,7 @@ Enrollment in the online course [Data Analysis for Social Scientists](https://ww
 
 Course information:
 * Provider: edX
+* Number: 14.310x
 * Start date: 11 Sep 2018
 * End date: 27 Nov 2018
 * Track: audit/non-verified

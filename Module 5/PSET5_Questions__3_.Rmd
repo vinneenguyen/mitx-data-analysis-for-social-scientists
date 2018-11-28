@@ -84,5 +84,13 @@ us. Researcher B uses as an estimator ˆθB = 2 ∗ median(x), where median(x) c
 median of the sample he receives from us. We have provided you with an R code (file 'RcodePset6Students.R' in this folder) that has some
 information missing in case you need help for the exercise.
 
+8. What would be the mean of this distribution of x?
+```{r}
+2.5
+```
+
+
+
+
 
 

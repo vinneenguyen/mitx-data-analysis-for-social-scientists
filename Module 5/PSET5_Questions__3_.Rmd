@@ -89,8 +89,10 @@ information missing in case you need help for the exercise.
 2.5
 ```
 
-
-
+9. What would be the variance of the distribution of θˆA?
+```{r}
+4 * 5^2  / (12*100)
+```
 
 
 

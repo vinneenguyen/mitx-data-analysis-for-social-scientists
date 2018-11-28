@@ -1,0 +1,158 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+# 14.310x: Data Analysis for Social Scientists Moments of a Random Variable, Applications to Auctions, and Intro to Regression
+
+Welcome to your fifth homework assignment! You will have about one week to work through the assignment.
+We encourage you to get an early start, particularly if you still feel you need more experience using R. We have provided this PDF copy of the assignment so that you can print and work through the assignment offline. You can also go online directly to complete the assignment. If you choose to work on the assignment using this PDF, please go back to the online platform to submit your answers based on the output produced.
+Good luck :)!
+
+In the first part of the problem set, we will delve more deeply into auction theory, which Sara introduced
+in lecture. We will demonstrate some auction theory properties by performing simulations of
+data. In these simulations, we will compare different schemes for auctions by varying the number of bidders
+and valuations. At an auction, bidders make offers to buy the goods, and a bidder’s valuation is
+how much the bidder offers to pay for the good.
+
+To start, try to understand the following R code. Run the code to test your understanding. We will
+start with the assumption that there are 2 bidders. We will simulate the auction 1000 times, resulting in
+1000 valuations for these 2 bidders. Imagine that you are the person trying to sell a particular good, and
+that you are using R to figure out the perfect pricing and allocation scheme.
+
+```{r}
+# Preliminaries
+rm(list = ls())
+getwd()
+
+# Uniform valuations
+number_of_bidders <- 2
+number_of_simulations <- 1000
+
+set.seed(1)
+valuations1 <- matrix(runif(number_of_bidders * number_of_simulations, min = 0, max = 1), nrow = number_of_simulations)
+```
+
+4. Now, we will use the R code above to test whether these predictions hold.
+First, let’s find the maximum valuation among the two bidders. Name the function in R that allows
+you to get this value. The function you use should return the maximum valuation when you run
+funcName(valuations1).
+Please enter only the function name (what you typed for funcName) – no arguments or parentheses!
+```{r}
+max(valuations1)
+```
+
+5. Take a look at the following R code that calculates the analytic solution to the expected revenue,
+and compare it with the one coming from the simulation.
+```{r}
+number_of_bidders <- 2
+N <- number_of_bidders
+V <- 10000 # number of simulations
+
+set.seed(5)
+valuations <- matrix(runif(N * V, min = 0, max = 1), nrow = V)
+maximum_valuation <- apply(valuations, 1, max)
+optimal_price <- 1 / ((1+N)^(1/N))
+expected_revenue <- (N/(N+1)) * 1 / ((1+N)^(1/N))
+
+revenue <- optimal_price * (maximum_valuation >= optimal_price)
+mean(revenue)
+expected_revenue
+```
+What variable captures the number of simulations we are using in the code?
+Please enter ONLY the name of the variable without any additional text. Make sure that the capitalization
+matches the code!
+
+6. Now, perform this exercise for different number of simulations: 10, 100, 1000, and 10000. As you increase the number of simulations, does the mean of the numeric revenue vector coincide more or less than with the analytic solution?
+a) It coincides more
+b) It coincides less
+```{r}
+N <- 2 # number of bidders
+Vs <- c(10, 100, 1000, 10000) # numbers of simulations
+
+# Theory
+optimal_price <- 1 / ((1+N)^(1/N))
+expected_revenue <- (N/(N+1)) * 1 / ((1+N)^(1/N)) # theoretical revenue
+
+# Simulations
+set.seed(5) # for generating "fixed" set of random numbers
+print("Simulated revenues")
+for (V in Vs) {
+  valuations <- matrix(runif(N * V, min = 0, max = 1), nrow = V)
+  maximum_valuation <- apply(valuations, 1, max)
+  revenue <- optimal_price * (maximum_valuation >= optimal_price)
+  mean(revenue) %>% print() # simulated revenue
+}
+
+print("Theoretical revenue")
+expected_revenue
+```
+
+8. What is the minimum number of bidders such that a buyer prefers to sell the good in an English Auction rather than a posted price auction?
+Note: You can do this in two different ways: one is to solve the question mathematically (difficult!),
+and the other one is to use the simulation in R to answer the question. To use the simulation
+in R, you will need to write code that computes the expected revenue in an English Auction and the
+expected revenue in a posted price auction given some number of bidders. You can then compare
+the two expected revenues for different numbers of bidders.
+a) You will need at least 1 bidder.
+b) You will need at least 2 bidders.
+c) You will need at least 3 bidders.
+d) You will need at least 4 bidders.
+```{r}
+# Preliminaries
+rm(list = ls())
+
+posted_revenue <- function(valuations) {
+  # Compute average revenue from posted-price sale
+  
+  N <- ncol(valuations) # number of bidders
+  optimal_price <- 1 / ((1+N)^(1/N)) # posted price
+  maximum_valuation <- apply(valuations, 1, max) # maximum valuation for each simulation
+  revenue <- optimal_price * (maximum_valuation >= optimal_price) %>% mean() # average of simulated revenues
+  
+  return(revenue)
+}
+
+auction_revenue <- function(valuations) {
+  # Compute average revenue from English auction
+  
+  N <- ncol(valuations) # number of bidders
+  second_largest_valuations <- apply(valuations, 1, function(x) sort(x)[N-1]) # winning bid is the second highest valuation
+  revenue <- mean(second_largest_valuations) # average of simulated revenues
+  
+  return(revenue)
+}
+
+# Uniform valuations of bidders
+N <- 3 # number of bidders
+V <- 10000 # number of simulations
+set.seed(5)
+valuations <- matrix(runif(N * V, min = 0, max = 1), nrow = V)
+
+cat("Number of bidders\n", N, "\n")
+
+print("Posted price")
+cat(posted_revenue(valuations), "(simulated)\n")
+expected_posted_revenue <- (N/(N+1)) * 1 / ((1+N)^(1/N)) # theoretical revenue from posted-price sale
+cat(expected_posted_revenue, "(theoretical)\n")
+
+print("English auction")
+cat(auction_revenue(valuations), "(simulated)\n")
+expected_auction_revenue <- (N-1) / (N+1) # theoretical revenue from English auction
+cat(expected_auction_revenue, "(theoretical)\n")
+```

@@ -1,0 +1,92 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+# 14.310x: Data Analysis for Social Scientists Moments of a Random Variable, Applications to Auctions, and Intro to Regression
+
+9. On the website www.modelingonlineauctions.com, you will find a number of data sets from actual auctions conducted on eBay.
+Download one involving the sale of Cartier watches: Cartier+3-day+auctions.csv. There are data on auctions of 18 different watches. For each auction, there is an auction ID, bids, time of each bid, bidder name, bidder rating, minimum bid for the auction, and winning bid for the auction.
+(Note that the winning bid is not the maximum bid submitted by the highest bidder but rather the
+second-highest bid plus an increment.)
+Load the data into R. How many auctions are in this data?
+Now clean the data set that contains the following variables:
+The id of the auction
+The ratio of the second highest bid to the third highest bid.
+The number of bidders.
+The number of bids.
+We can provide you with the following R-code to create these variables, but some information is missing. You will need to either fill the information or create your own code.
+```{r}
+# Preliminaries
+rm(list = ls())
+getwd()
+
+# Load data
+cartier_data <- read.csv("Data/Cartier+3-day+auctions.csv")
+
+## Clean data
+
+unique_bids <- unique(cartier_data$auctionid)
+ratios <- rep(NA, times = length(unique_bids)) # 2nd highest bid to 3rd highest bid
+numbers_of_bidders <- rep(NA, times = length(unique_bids))
+numbers_of_bids <- rep(NA, times = length(unique_bids))
+
+for (i in 1:length(unique_bids)) {
+  auction <- subset(cartier_data, cartier_data$auctionid == unique_bids[i]) # data of a single auction
+  ascending_bids <- sort(auction$bid)
+  bid2 <- ascending_bids[length(ascending_bids)-1] # 2nd highest bid
+  bid3 <- ascending_bids[length(ascending_bids)-2] # 3rd highest bid
+  ratios[i] <- bid2 / bid3
+  numbers_of_bidders[i] <- length(unique(auction$bidder))
+  numbers_of_bids[i] <- length(auction$bid)
+}
+
+data_clean <- data.frame(unique_bids, ratios, numbers_of_bidders, numbers_of_bids)
+
+##
+```
+
+10. What is the mean of the ratio of the second highest bid to the third highest bid?
+11. What is the median of the number of bidders?
+12. What is the maximum value of the number of bids?
+```{r}
+## Explore data
+
+print("Mean 2nd/3rd highest bid ratio")
+mean(data_clean$ratios)
+
+print("Median number of bidders")
+median(data_clean$numbers_of_bidders)
+
+print("Maximum number of bids")
+max(data_clean$numbers_of_bids)
+
+##
+```
+
+13. We can think of ordered bids as being order statistics from some underlying distribution of valuations.
+Using this perspective, would you expect the number of bidders and the number of bids to
+inform the ratio between the second and third highest bids?
+(Note: We are not looking for a precise, mathematical answer here, just a bit of informed speculation.)
+a) Yes
+b) No
+```{r}
+# Sort data (in ascending order) by numbers of bidders and numbers of bids
+data_clean[order(data_clean$numbers_of_bidders, data_clean$numbers_of_bids), ]
+```
+Remark: From the sorted data, as the number of bidders and the number of bids increase, the 2nd/3rd highest bid ratio do not show an obvious pattern of change (either increasing or decreasing), although the ratio tends to be higher across the number of bidders from 3 to 6 than the other numbers of bidders.

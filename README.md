@@ -10,7 +10,5 @@ Course information:
 * End date: 27 Nov 2018
 * Track: audit/non-verified
 
-## Linked project
-This repository is linked with the RStudio Cloud project [edX - Data Analysis for Social Scientists (11 Sep 2018 – 27 Nov 2018, audit track)](https://rstudio.cloud/project/146187).
-
-Note: registration for https://rstudio.cloud required to view the project
+## Execution in RStudio Cloud
+This repository is synchronized with this [edX - Data Analysis for Social Scientists (11 Sep 2018 – 27 Nov 2018, audit track)](https://rstudio.cloud/project/146187) RStudio Cloud project. To access the project, registration for https://rstudio.cloud is required.

@@ -71,3 +71,18 @@ for (lamda in possible_means) {
   }
 }
 ```
+
+Now we are going to perform some simulations in R. We are going to follow Sara’s example in the
+lecture where we imagine a case where the xi follow a uniform distribution between 0 and θ (U[0, θ]),
+and a researcher is trying to figure out the value of θ. (We will set θ = 5 ). We are going to simulate
+different random samples from this distribution with a sample size of 100 observations each. These
+samples will be available to the two researchers, and we are going to plot how ˆθ is distributed for
+different estimators. There are two types of researchers in this world: researcher A uses as an
+estimator for θ,
+ˆθA = 2 ∗ x, where x corresponds to the sample mean of the sample he receives from
+us. Researcher B uses as an estimator ˆθB = 2 ∗ median(x), where median(x) corresponds to the
+median of the sample he receives from us. We have provided you with an R code (file 'RcodePset6Students.R' in this folder) that has some
+information missing in case you need help for the exercise.
+
+
+

@@ -1,4 +1,4 @@
-# The code below is missing some information and is used for 'PSET5_Questions__3_.pdf'
+# Note: The code contained in this file is missing some information and is used for 'PSET5_Questions__3_.pdf'
 
 
 #Preliminaries

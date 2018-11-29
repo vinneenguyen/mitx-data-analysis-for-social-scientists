@@ -177,4 +177,4 @@ legend("topright",
        lwd = c(2, 2)) # Add legend
 dev.off()
 ```
-```
+

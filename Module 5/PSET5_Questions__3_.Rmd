@@ -97,7 +97,13 @@ information missing in case you need help for the exercise.
 We have run our simulations, simulating 100,000 different samples of size 100. We have provided
 200,000 researchers (A and B), each with one of these samples. They have sent us their estimators
 for ˆθ. The following plot shows a histogram of their estimators (Figure 1).
+
+12. Does the blue histogram correspond to the estimator of researcher A or researcher B?
 ```{r}
+#Preliminaries
+rm(list = ls())
+library("mvtnorm")
+
 real_theta <- 5
 sample_size <- 100
 number_simulations <- 100000
@@ -119,7 +125,7 @@ p2$counts = p2$density # for plotting in 'density', instead of 'counts'
 # Plot 2 histograms together
 pdf("histogram1.pdf")
 plot(p1, col=rgb(1,0,0,1/4), xlim = range, xlab = "values", ylab = "density")
-plot( p2, col=rgb(0,0,1,1/4), add = TRUE)
+plot(p2, col=rgb(0,0,1,1/4), add = TRUE)
 legend("topright",
        legend = c("estimator_mean", "estimator_median"), 
        col =  c(rgb(1,0,0,1/4), rgb(0,0,1,1/4)),
@@ -128,13 +134,47 @@ legend("topright",
 dev.off()
 ```
 
-12. Does the blue histogram correspond to the estimator of researcher A or researcher B?
+14. Now, let’s increase the sample size to 1000. As an exercise try to use the provided code to code this
+yourself in R. What would be the new variance of the estimator ˆθA?
+The following figure (2) shows the distribution for ˆθA for n = 100, and n = 1000
+15. Does the blue histogram corresponds to a sample size of 100 or of 1000?
+(a) 100
+(b) 1000
+```{r}
+# Sample size will be changed to 200 (instead of 1000) due to limited memory (1GB RAM)
 
+# Preliminaries
+rm(list = ls())
 
+real_theta <- 5
+sample_size1 <- 100
+sample_size2 <- 200
+number_simulations <- 100000
 
+# Two sets of simulated samples, of 2 sizes
+simulations1 <- matrix(runif(sample_size1*number_simulations, max = real_theta), nrow = number_simulations)
+simulations2 <- matrix(runif(sample_size2*number_simulations, max = real_theta), nrow = number_simulations)
 
+# Mean estimates
+estimator_mean1 <- 2*apply(simulations1, 1, mean)
+estimator_mean2 <- 2*apply(simulations2, 1, mean)
 
+# Mean estimate histograms
+p1 <- hist(estimator_mean1, breaks = 100)
+p2 <- hist(estimator_mean2, breaks = 100)
+range <- range(p1$mids, p2$mids) # min and max values of midpoints of bars
+p1$counts = p1$density # for plotting in 'density', instead of 'counts'
+p2$counts = p2$density # for plotting in 'density', instead of 'counts'
 
-
-
-
+# Plot histograms together
+pdf("histogram_mean_estimator_2_sample_sizes.pdf")
+plot(p1, col=rgb(1,0,0,1/4), xlim = range, xlab = "values", ylab = "density")
+plot(p2, col=rgb(0,0,1,1/4), add = TRUE)
+legend("topright",
+       legend = c("estimator_mean1", "estimator_mean2"), 
+       col =  c(rgb(1,0,0,1/4), rgb(0,0,1,1/4)),
+       lty = c(1, 1),
+       lwd = c(2, 2)) # Add legend
+dev.off()
+```
+```

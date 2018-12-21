@@ -118,12 +118,19 @@ Please round your answer to two decimal places.
 sum(larger_than_observed) / nrow(perms)
 ```
 
-
+**Question 4B**
+Now load the data set teachers final.csv in R. If we want to test the sharp null hypothesis in this data, with 49 schools treated, is it the case that the number of possible assignments would be too large to do the problem (at least with your laptop and less than an hour of computing time)?
+a. Yes
+b. No
 ```{r}
-teacher_data <- read.csv("Data/teachers_final.csv") # read teachers' data
-head(select(teacher_data, treatment, open)) # show data in columns 'treatment' and 'open'
+"Data on schools"
+schools <- read.csv("Data/teachers_final.csv") %>% print()
+"Number of treated schools"
+sum(schools$treatment == 1)
+"Total number of schools"
+nrow(schools$treatment)
 ```
-
+The number of possible assignments would be too large (100 choose 49)
 
 ```{r}
 # Questions 1 - 4

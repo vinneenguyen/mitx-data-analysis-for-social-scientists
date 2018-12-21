@@ -132,13 +132,13 @@ nrow(schools$treatment)
 ```
 The number of possible assignments would be too large (100 choose 49)
 
+**Question 5**
+A solution to this problem with a large number of observations is to simulate different random assignments and calculate the proportion of simulations in which the statistic exceeds the value of the observed data. We have provided you with the code that performs this exercise on the data teachers_final.csv with 100,000 simulations. If you run this code, is the approximate Fisher's p-value similar to the one we got with our 8 schools example?
+a. Yes
+b. No
+
 ```{r}
-# Questions 1 - 4
-#-------------------------------------------------
-# Question 5 - 6
-#-------------------------------------------------
 simul_stat <- as.vector(NULL)
-schools <- read.csv('teachers_final.csv')
 set.seed(1001)
 for(i in 1:100) {
   print(i)

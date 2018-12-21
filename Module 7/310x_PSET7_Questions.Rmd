@@ -164,10 +164,10 @@ actual_stat <- abs((1/49) * sum(schools$treatment * schools$open) - (1/(100-49))
 sum(sim_stats >= actual_stat) / nrow(sim_stats)
 ```
 
-
+**Question 6**
+Since we are working in a very large sample, we can now consider Neyman's methods of inference. What is the Average Treatment Effect (ATE) on the observed data set?
+Please round your answer to three decimal places.
 ```{r}
-#Question 7 - 8
-#---------------------------------------------------
 #Printing the ATE
 ate <- actual_stat
 ate

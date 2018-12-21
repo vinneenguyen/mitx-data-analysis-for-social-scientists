@@ -1,0 +1,173 @@
+---
+title: "14.310x: Data Analysis for Social Scientists - Homework 7"
+output: html_notebook
+---
+
+
+Welcome to your seventh homework assignment! You will have about one week to work through the
+assignment. We encourage you to get an early start, particularly if you still feel you need more experience
+using R. We have provided this PDF copy of the assignment so that you can print and work through
+the assignment offline. You can also go online directly to complete the assignment. If you choose to
+work on the assignment using this PDF, please go back to the online platform to submit your answers
+based on the output produced. Some of the questions we are asking are not easily solvable using math
+so we recommend you to use your R knowledge and the content of previous homeworks to find numeric
+solutions.
+Good luck :)!
+
+**Question 1: Inference for a Randomized Experiment**
+This problem is based on the following paper:
+Duflo, Esther, Rema Hanna, and Stephen P. Ryan. 2012. “Incentives Work: Getting Teachers
+to Come to School.” American Economic Review, 102(4): 1241-78.
+In this experiment, the researchers set out to test whether providing teachers with cameras to take photos
+to prove their attendance, could be effective in reducing teacher absenteeism. First, read the abstract
+of the paper in the following link http://economics.mit.edu/files/5582. You can refer back to the
+paper as necessary.
+
+Note: The dataset used to generate the Lecture 15 slides relating to this paper is slightly different than the dataset we have provided, so do not be alarmed if your answers are slightly different! 
+
+In order to complete this exercise we are providing you with the code 'problem1students_pset8.R' (downloaded from [here](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/e0aa957d878ab207d486a817a3080e3d/asset-v1:MITx+14.310x+3T2018+type@asset+block/problem1students_pset8.R)). The code has some missing parts that you have to fill in order to run it.  The dataset that you will need is 'Data/teachers_final.csv' (downloaded from [here](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/b4df7697b0d1e908e28498fef0c0298e/asset-v1:MITx+14.310x+3T2018+type@asset+block/teachers_final.csv))
+
+```{r}
+# Preliminaries
+#-------------------------------------------------
+#install.packages('perm')
+library(tidyverse)
+library(perm)
+rm(list = ls())
+```
+
+Let’s start by thinking through how Fisher’s ideas can be applied to evaluate this program in this
+context.
+1. First, suppose we only have 8 schools. Our aim is to calculate the Fisher’s exact p-value. Under the
+assumption that we will have the same number of treated and control units, how many potential
+treatment assignments across these 8 units are possible?
+(a) 50
+(b) 60
+(c) 70
+(d) 80
+```{r}
+"Potential treatment assignments across these 8 units"
+choose(8, 4)
+```
+
+Suppose that after the treatment has been assigned and the experiment has been carried out, the researcher has the following data. The variable **open** corresponds to the fraction of days that the school was opened when random visits were made. 
+
+Here is the data for 8 schools from the data in this study (found in teachers final.csv):
+```{r}
+school_data <- data_frame(treatment = c(0, 1, 0, 0, 0, 1, 1, 1), open = c(0.462, 0.731, 0.571, 0.923, 0.333, 0.750, 0.893, 0.692))
+school_data
+```
+
+Assume that we deﬁne as our statistic the absolute diﬀerence in means by treatment status. To help you compute the test statistic for the observed data, we have provided you with the following R code (see in 'problem1students_pset8.R') to load in this table and generate diﬀerent permutations, although it is missing some parts that you will need to ﬁll in. We make use of the package perm, speciﬁcally the function ChooseMatrix, look it up and look up it’s arguments and read the code to make sure you understand what it is doing.
+```{r}
+perms <- chooseMatrix(8,4) # 70x8 matrix
+"Possible assignments (some first rows): row -> 1 possible assignment, column -> school"
+head(perms)
+
+A <- matrix(c(0.462, 0.731, 0.571, 0.923, 0.333, 0.750, 0.893, 0.692), nrow=8, ncol=1, byrow=TRUE) # column vector with 8 rows
+"Fraction of days that the school was opened when random visits were made (8 schools in total)"
+A
+
+treatment_avg <- (1/4)*perms%*%A
+"Means of treatment groups (some first rows) across all possible assignments"
+head(treatment_avg)
+
+control_avg <- (1/4)*(1-perms)%*%A
+"Means of control groups (some first rows) across all possible assignments"
+head(control_avg)
+
+test_statistic <- abs(treatment_avg-control_avg)
+"Differences (in absolute) between means of treatment and control group (some first rows) across all possible assignments"
+head(test_statistic)
+```
+
+**Question 2**
+For this observed data, what would be the value of our statistic? (Please round your answer to two decimal places) We recommend you solve this problem algebraically and using R to check your answer.
+```{r}
+# Find row-number corresponding to true assignment
+rownumber <- which(apply(perms, 1, function(x) all(x == c(0, 1, 0, 0, 0, 1, 1, 1))) == TRUE)
+# Extract true difference between treatment and control groups
+observed_test <- test_statistic[rownumber]
+"Value of observed statistic"
+observed_test
+"Value of observed statistic (hand-calculated)"
+abs(1/4 * (0.731 + 0.750 + 0.893 + 0.692) - 1/4 * (0.462 + 0.571 + 0.923 + 0.333))
+```
+
+Now, use your results to compute how many of these statistics are larger than the one from our observed data?
+11
+16
+21
+26
+31
+36
+```{r}
+larger_than_observed <- (test_statistic >= observed_test)
+"Number of statistics exceeding value of observed statistic"
+sum(larger_than_observed)
+
+df <- data.frame(perms, control_avg, treatment_avg, test_statistic)
+"Calculated data"
+df
+```
+
+What would be the Fisher's Exact p-value in this case?
+Please round your answer to two decimal places.
+```{r}
+"Fisher's Exact p-value"
+sum(larger_than_observed) / nrow(perms)
+```
+
+
+```{r}
+teacher_data <- read.csv("Data/teachers_final.csv") # read teachers' data
+head(select(teacher_data, treatment, open)) # show data in columns 'treatment' and 'open'
+```
+
+
+```{r}
+# Questions 1 - 4
+#-------------------------------------------------
+# Question 5 - 6
+#-------------------------------------------------
+simul_stat <- as.vector(NULL)
+schools <- read.csv('teachers_final.csv')
+set.seed(1001)
+for(i in 1:100) {
+  print(i)
+  schools$rand <- runif(100,min=0,max=1)
+  schools$treatment_rand <- as.numeric(rank(schools$rand)<=49)
+  schools$control_rand = 1-schools$treatment_rand
+  simul_stat <-append(simul_stat,
+            sum(schools$treatment_rand*schools$open)/sum(schools$treatment_rand) 
+            - sum(schools$control_rand*schools$open)/sum(schools$control_rand))
+}
+
+schools$control = 1-schools$treatment
+actual_stat <- sum(schools$treatment*schools$open)/sum(schools$treatment) - sum(schools$control*schools$open)/sum(schools$control)
+sum(abs(simul_stat) >= actual_stat)/NROW(simul_stat)
+
+#Question 7 - 8
+#---------------------------------------------------
+#Printing the ATE
+ate <- actual_stat
+ate
+
+control_mean <- sum(schools$control*schools$open)/sum(schools$control)
+treatment_mean <- sum(schools$treatment*schools$open)/sum(schools$treatment)
+
+s_c <- (1/(sum(schools$control)-1))*sum(((schools$open-control_mean)*schools$control)^2)
+s_t <- (1/(sum(schools$treatment)-1))*sum(((schools$open-treatment_mean)*schools$treatment)^2)
+
+Vneyman <- (s_c/sum(schools$control) + s_t/sum(schools$treatment))
+print(sqrt(Vneyman))
+print(actual_stat/sqrt(Vneyman))
+
+print(actual_stat-1.96*sqrt(Vneyman))
+print(actual_stat+1.96*sqrt(Vneyman))
+
+```
+
+
+
+

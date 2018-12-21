@@ -130,30 +130,42 @@ sum(schools$treatment == 1)
 "Total number of schools"
 nrow(schools$treatment)
 ```
-The number of possible assignments would be too large (100 choose 49)
+The number of possible assignments would be too large (100 choose 49).
 
 **Question 5**
 A solution to this problem with a large number of observations is to simulate different random assignments and calculate the proportion of simulations in which the statistic exceeds the value of the observed data. We have provided you with the code that performs this exercise on the data teachers_final.csv with 100,000 simulations. If you run this code, is the approximate Fisher's p-value similar to the one we got with our 8 schools example?
 a. Yes
 b. No
+```{r}
+"Simulated assignments"
+num_assignments <- 100
+set.seed(1001)
+sim_treatments <- matrix(runif(100*num_assignments, min = 0, max = 1), nrow = num_assignments, byrow = TRUE)
+for (i in 1:nrow(sim_treatments) {
+  sim_treatments[i,] <- as.numeric(rank(sim_treatments[i,]) <= 49)
+} %>% print() # for each row, turn 49 smallest values to 1's, other values to 0's
+
+"Fraction of days that the school was opened when random visits were made (100 schools in total)"
+open_rates <- matrix(schools$open, nrow = 100, ncol = 1) %>% print()
+
+"Means of treatment groups across simulated assignments"
+treatment_means <- (1/49) * sim_treatments %*% open_rates %>% print()
+
+"Means of control groups across simulated assignments"
+control_means <- (1/(100-49)) * (1-sim_treatments) %*% open_rates %>% print()
+
+"Simulated statistics"
+sim_stats <- abs(treatment_means - control_means) %>% print()
+
+"Actual statistic"
+actual_stat <- abs((1/49) * sum(schools$treatment * schools$open) - (1/(100-49)) * sum(schools$control * schools$open)) %>% print()
+
+"Fraction of number of simulated statistics exceeding actual statistic"
+sum(sim_stats >= actual_stat) / nrow(sim_stats)
+```
+
 
 ```{r}
-simul_stat <- as.vector(NULL)
-set.seed(1001)
-for(i in 1:100) {
-  print(i)
-  schools$rand <- runif(100,min=0,max=1)
-  schools$treatment_rand <- as.numeric(rank(schools$rand)<=49)
-  schools$control_rand = 1-schools$treatment_rand
-  simul_stat <-append(simul_stat,
-            sum(schools$treatment_rand*schools$open)/sum(schools$treatment_rand) 
-            - sum(schools$control_rand*schools$open)/sum(schools$control_rand))
-}
-
-schools$control = 1-schools$treatment
-actual_stat <- sum(schools$treatment*schools$open)/sum(schools$treatment) - sum(schools$control*schools$open)/sum(schools$control)
-sum(abs(simul_stat) >= actual_stat)/NROW(simul_stat)
-
 #Question 7 - 8
 #---------------------------------------------------
 #Printing the ATE

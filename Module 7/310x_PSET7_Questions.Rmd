@@ -183,20 +183,33 @@ Neyman$ATE
 
 **Question 7**
 What is the upper bound of the standard error of this point estimate using Neyman's method? (Hint: Use the conservative estimator of sampling standard deviation,, as your upper bound.)
-
 Please round your answer to the three decimal places.
-
-
 ```{r}
 "Neyman variance"
 Neyman$estimated_treatment_variance <- (1/(Neyman$num_treated-1)) * sum(((schools$open-Neyman$treatment_mean) * schools$treatment) ^ 2)
 Neyman$estimated_control_variance <- (1/(Neyman$num_control-1)) * sum(((schools$open-Neyman$control_mean) * (1-schools$treatment)) ^ 2)
 Neyman$variance <-  (Neyman$estimated_treatment_variance/Neyman$num_treated) + (Neyman$estimated_control_variance/Neyman$num_control)
+Neyman$variance
 
+"Neyman upper bound of standard error (sqrt(variance))"
+sqrt(Neyman$variance)
+```
 
-print(sqrt(Vneyman))
-print(actual_stat/sqrt(Vneyman))
+**Question 8**
+What is the t-statistic if we want to test the null hypothesis the ATE is equal to zero?
+PLease round your answer to the second decimal point, i.e. if your answer is 4.567, please round to 4.57, and if it is 4.562, please round to 4.56.
+```{r}
+"t-statistic under null (treatment effect = 0)"
+Neyman$t_stat_null <- (Neyman$ATE-0) / sqrt(Neyman$variance)
+Neyman$t_stat_null
+```
 
+**Question 9**
+Is the associated p-value to this test similar to the one we found for the sharp null hypothesis in question 5?
+a. Yes
+b. No
+```{r}
+2 * pt(Neyman$t_stat_null, df = (Neyman$num_treated+Neyman$num_control)-1, lower.tail = FALSE)
 print(actual_stat-1.96*sqrt(Vneyman))
 print(actual_stat+1.96*sqrt(Vneyman))
 

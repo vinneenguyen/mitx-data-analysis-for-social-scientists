@@ -128,7 +128,7 @@ schools <- read.csv("Data/teachers_final.csv") %>% print()
 "Number of treated schools"
 sum(schools$treatment == 1)
 "Total number of schools"
-nrow(schools$treatment)
+length(schools$treatment)
 ```
 The number of possible assignments would be too large (100 choose 49).
 
@@ -137,54 +137,70 @@ A solution to this problem with a large number of observations is to simulate di
 a. Yes
 b. No
 ```{r}
-"Simulated assignments"
+# Simulated assignments
 num_assignments <- 100
 set.seed(1001)
 sim_treatments <- matrix(runif(100*num_assignments, min = 0, max = 1), nrow = num_assignments, byrow = TRUE)
-for (i in 1:nrow(sim_treatments) {
+for (i in 1:nrow(sim_treatments)) {
   sim_treatments[i,] <- as.numeric(rank(sim_treatments[i,]) <= 49)
-} %>% print() # for each row, turn 49 smallest values to 1's, other values to 0's
+} # for each row, turn 49 smallest values to 1's, other values to 0's
 
-"Fraction of days that the school was opened when random visits were made (100 schools in total)"
-open_rates <- matrix(schools$open, nrow = 100, ncol = 1) %>% print()
+# Fraction of days that the school was opened when random visits were made (100 schools in total)
+open_rates <- matrix(schools$open, nrow = 100, ncol = 1)
 
-"Means of treatment groups across simulated assignments"
-treatment_means <- (1/49) * sim_treatments %*% open_rates %>% print()
+# Means of treatment groups across simulated assignments
+treatment_means <- (1/49) * sim_treatments %*% open_rates
 
-"Means of control groups across simulated assignments"
-control_means <- (1/(100-49)) * (1-sim_treatments) %*% open_rates %>% print()
+# Means of control groups across simulated assignments
+control_means <- (1/(100-49)) * (1-sim_treatments) %*% open_rates
 
-"Simulated statistics"
-sim_stats <- abs(treatment_means - control_means) %>% print()
+"Simulated statistics (partly shown)"
+sim_stats <- abs(treatment_means - control_means)
+sim_stats[1:10,]
 
 "Actual statistic"
-actual_stat <- abs((1/49) * sum(schools$treatment * schools$open) - (1/(100-49)) * sum(schools$control * schools$open)) %>% print()
+actual_stat <- abs((1/49) * sum(schools$treatment * schools$open) - (1/(100-49)) * sum((1-schools$treatment) * schools$open)) %>% print()
 
-"Fraction of number of simulated statistics exceeding actual statistic"
+"Fraction of number of simulated statistics exceeding actual statistic (Fisher's p-value)"
 sum(sim_stats >= actual_stat) / nrow(sim_stats)
 ```
 
 **Question 6**
 Since we are working in a very large sample, we can now consider Neyman's methods of inference. What is the Average Treatment Effect (ATE) on the observed data set?
 Please round your answer to three decimal places.
+
 ```{r}
-#Printing the ATE
-ate <- actual_stat
-ate
+"Numbers of schools in treated and control groups"
+counts <- table(schools$treatment)
+Neyman <- data.frame(num_treated = counts["1"], num_control = counts["0"], num_total = sum(counts)) %>% print()
 
-control_mean <- sum(schools$control*schools$open)/sum(schools$control)
-treatment_mean <- sum(schools$treatment*schools$open)/sum(schools$treatment)
+"Average Treatment Effect (ATE)"
+Neyman$treatment_mean <- sum(schools$treatment * schools$open) / Neyman$num_treated
+Neyman$control_mean <- sum((1-schools$treatment) * schools$open) / Neyman$num_control
+Neyman$ATE <- Neyman$treatment_mean - Neyman$control_mean
+Neyman$ATE
+```
 
-s_c <- (1/(sum(schools$control)-1))*sum(((schools$open-control_mean)*schools$control)^2)
-s_t <- (1/(sum(schools$treatment)-1))*sum(((schools$open-treatment_mean)*schools$treatment)^2)
+**Question 7**
+What is the upper bound of the standard error of this point estimate using Neyman's method? (Hint: Use the conservative estimator of sampling standard deviation,, as your upper bound.)
 
-Vneyman <- (s_c/sum(schools$control) + s_t/sum(schools$treatment))
+Please round your answer to the three decimal places.
+
+
+```{r}
+"Neyman variance"
+Neyman$estimated_treatment_variance <- (1/(Neyman$num_treated-1)) * sum(((schools$open-Neyman$treatment_mean) * schools$treatment) ^ 2)
+Neyman$estimated_control_variance <- (1/(Neyman$num_control-1)) * sum(((schools$open-Neyman$control_mean) * (1-schools$treatment)) ^ 2)
+Neyman$variance <-  (Neyman$estimated_treatment_variance/Neyman$num_treated) + (Neyman$estimated_control_variance/Neyman$num_control)
+
+
 print(sqrt(Vneyman))
 print(actual_stat/sqrt(Vneyman))
 
 print(actual_stat-1.96*sqrt(Vneyman))
 print(actual_stat+1.96*sqrt(Vneyman))
 
+Neyman
 ```
 
 

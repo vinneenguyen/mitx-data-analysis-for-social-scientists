@@ -209,7 +209,12 @@ Is the associated p-value to this test similar to the one we found for the sharp
 a. Yes
 b. No
 ```{r}
-2 * pt(Neyman$t_stat_null, df = (Neyman$num_treated+Neyman$num_control)-1, lower.tail = FALSE)
+"p-value under null (treatment effect = 0)"
+Neyman$t_prob_null <- 2 * pt(Neyman$t_stat_null, df = (Neyman$num_treated+Neyman$num_control)-1, lower.tail = FALSE)
+Neyman$t_prob_null
+```
+
+```{r}
 print(actual_stat-1.96*sqrt(Vneyman))
 print(actual_stat+1.96*sqrt(Vneyman))
 

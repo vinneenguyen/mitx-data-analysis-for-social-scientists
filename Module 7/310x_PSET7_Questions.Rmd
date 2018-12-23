@@ -199,7 +199,7 @@ sqrt(Neyman$variance)
 What is the t-statistic if we want to test the null hypothesis the ATE is equal to zero?
 PLease round your answer to the second decimal point, i.e. if your answer is 4.567, please round to 4.57, and if it is 4.562, please round to 4.56.
 ```{r}
-"t-statistic under null (treatment effect = 0)"
+"Neyman t-statistic under null (treatment effect = 0)"
 Neyman$t_stat_null <- (Neyman$ATE-0) / sqrt(Neyman$variance)
 Neyman$t_stat_null
 ```
@@ -209,12 +209,19 @@ Is the associated p-value to this test similar to the one we found for the sharp
 a. Yes
 b. No
 ```{r}
-"p-value under null (treatment effect = 0)"
+"Neyman p-value under null (treatment effect = 0)"
 Neyman$t_prob_null <- 2 * pt(Neyman$t_stat_null, df = (Neyman$num_treated+Neyman$num_control)-1, lower.tail = FALSE)
 Neyman$t_prob_null
 ```
 
+**Question 10**
+What is the 95% confidence interval of this test?
+a. It is given by (0.127, 0.267)
+b. It is given by (0.147, 0.247)
+c. It is given by (0.157, 0.237)
+d. It is given by (0.137, 0.257)
 ```{r}
+ * pt(Neyman$t_stat_null, df = (Neyman$num_treated+Neyman$num_control)-1, lower.tail = FALSE)
 print(actual_stat-1.96*sqrt(Vneyman))
 print(actual_stat+1.96*sqrt(Vneyman))
 

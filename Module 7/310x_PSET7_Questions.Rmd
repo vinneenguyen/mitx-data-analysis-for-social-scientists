@@ -188,8 +188,8 @@ Please round your answer to the three decimal places.
 "Neyman variance"
 Neyman$estimated_treatment_variance <- (1/(Neyman$num_treated-1)) * sum(((schools$open-Neyman$treatment_mean) * schools$treatment) ^ 2)
 Neyman$estimated_control_variance <- (1/(Neyman$num_control-1)) * sum(((schools$open-Neyman$control_mean) * (1-schools$treatment)) ^ 2)
-Neyman$variance <-  (Neyman$estimated_treatment_variance/Neyman$num_treated) + (Neyman$estimated_control_variance/Neyman$num_control)
-Neyman$variance
+Neyman$estimated_variance <-  (Neyman$estimated_treatment_variance/Neyman$num_treated) + (Neyman$estimated_control_variance/Neyman$num_control)
+Neyman$estimated_variance
 
 "Neyman upper bound of standard error (sqrt(variance))"
 sqrt(Neyman$variance)
@@ -221,11 +221,12 @@ b. It is given by (0.147, 0.247)
 c. It is given by (0.157, 0.237)
 d. It is given by (0.137, 0.257)
 ```{r}
- * pt(Neyman$t_stat_null, df = (Neyman$num_treated+Neyman$num_control)-1, lower.tail = FALSE)
-print(actual_stat-1.96*sqrt(Vneyman))
-print(actual_stat+1.96*sqrt(Vneyman))
-
-Neyman
+"Neyman 95% confidence interval"
+Neyman$lower_critical_value <- qt((1-0.95)/2, df = (Neyman$num_treated+Neyman$num_control)-1)
+Neyman$upper_critical_value <- qt(0.95+(1-0.95)/2, df = (Neyman$num_treated+Neyman$num_control)-1)
+Neyman$lower_bound <- Neyman$ATE - Neyman$upper_critical_value*sqrt(Neyman$estimated_variance)
+Neyman$upper_bound <- Neyman$ATE - Neyman$lower_critical_value*sqrt(Neyman$estimated_variance)
+cat("(", Neyman$lower_bound, ", ", Neyman$upper_bound, ")\n")
 ```
 
 

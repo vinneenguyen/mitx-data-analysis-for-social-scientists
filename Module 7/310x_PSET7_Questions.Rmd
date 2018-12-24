@@ -251,9 +251,24 @@ b. 110
 c. 120
 d. 130
 ```{r}
+"Neyman parameters (assuming Average Treatment Effect reduced by half)"
+Neyman_reduced <- data.frame(significance = 0.05, power = 0.9, frac_treated = 0.5)
+Neyman_reduced$assumed_variance <- 1/(Neyman$num_treated+Neyman$num_control) * (Neyman$num_treated*Neyman$estimated_treatment_variance + Neyman$num_control*Neyman$estimated_control_variance)
+Neyman_reduced$assumed_effect <- 1/2 * Neyman$ATE
+Neyman_reduced
 
+"Neyman sample size"
+Neyman_reduced$num_total <- 1/(Neyman_reduced$assumed_effect^2/Neyman_reduced$assumed_variance * Neyman_reduced$frac_treated * (1-Neyman_reduced$frac_treated)) * ((qnorm(Neyman_reduced$power) + qnorm(1-1/2*Neyman_reduced$significance)))^2
+Neyman_reduced$num_total
 ```
 
+Now we are going to consider non parametric regressions. The following plots show three different non-parametric regressions that relates the level of happiness in a marriage with age (where 2 corresponds to "very happy", 1 to "pretty happy", and 0 to "not too happy"). 
 
+Plot A:
+![Plot A](Data/plot1_pset8.jpg)
+Plot B:
+![Plot B](Data/plot2_pset8.jpg)
+Plot C:
+![Plot C](Data/plot3_pset8.jpg)
 
-
+dfsdfdf

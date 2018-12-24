@@ -280,7 +280,7 @@ b, c, a
 c, a, b
 c, b, a
 ```{r}
-"Narrower to the wider bandwidth"
+"Narrower to wider bandwidth"
 "b, c, a"
 ```
 
@@ -295,12 +295,40 @@ d. 20
 ```{r}
 attach(schools)
 
+"Bandwidth 0.04 model"
 bw_0p04 <- npreg(xdat = pctpostwritten, ydat = open, bws = 0.04, bandwidth.compute = FALSE)
 plot(bw_0p04)
+
+"Bandwidth 0.001 model"
+bw_0p001 <- npreg(xdat = pctpostwritten, ydat = open, bws = 0.001, bandwidth.compute = FALSE)
+plot(bw_0p001)
+
+"Bandwidth 1 model"
+bw_1 <- npreg(xdat = pctpostwritten, ydat = open, bws = 1, bandwidth.compute = FALSE)
+plot(bw_1)
+
+"Bandwidth 20 model"
+bw_20 <- npreg(xdat = pctpostwritten, ydat = open, bws = 20, bandwidth.compute = FALSE)
+plot(bw_20)
 
 detach(schools)
 ```
 
+**Question 17**
+Generate a plot of the CDFs for each cohort to see those results visually.Does the distribution of scores in the treatment group FOSD that of the control group?
+a. Yes
+b. No
+```{r}
+# Create data frame (scores and group names) for ggplot()
+scores <- select(schools, treatment, pctpostwritten)
+colnames(scores)[colnames(scores) == "treatment"] <- "group_name" # change column name from 'treatment' to 'group_name'
+scores$group_name[scores$group_name == 1] <- "treatment" # replace '1' with 'treatment' in 'group_name' column
+scores$group_name[scores$group_name == 0] <- "control" # replace '0' with 'control' in 'group_name' column
+scores_by_groupname
+
+# Plot CDFs for treatment and control groups
+
+```
 
 
 

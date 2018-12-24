@@ -33,6 +33,7 @@ In order to complete this exercise we are providing you with the code 'problem1s
 #install.packages('perm')
 library(tidyverse)
 library(perm)
+library(np)
 rm(list = ls())
 ```
 
@@ -262,8 +263,7 @@ Neyman_reduced$num_total <- 1/(Neyman_reduced$assumed_effect^2/Neyman_reduced$as
 Neyman_reduced$num_total
 ```
 
-Now we are going to consider non parametric regressions. The following plots show three different non-parametric regressions that relates the level of happiness in a marriage with age (where 2 corresponds to "very happy", 1 to "pretty happy", and 0 to "not too happy"). 
-
+Now we are going to consider non parametric regressions. The following plots show three different non-parametric regressions that relates the level of happiness in a marriage with age (where 2 corresponds to "very happy", 1 to "pretty happy", and 0 to "not too happy").
 Plot A:
 ![Plot A](Data/plot1_pset8.jpg)
 Plot B:
@@ -271,4 +271,37 @@ Plot B:
 Plot C:
 ![Plot C](Data/plot3_pset8.jpg)
 
-dfsdfdf
+**Question 13**
+Rank the three plots from the one with the narrower to the wider bandwidth.
+a, b, c
+a, c, b
+b, a, c
+b, c, a
+c, a, b
+c, b, a
+```{r}
+"Narrower to the wider bandwidth"
+"b, c, a"
+```
+
+Going back to the data from teachers incentives.csv, we are now going to focus on two variables: pctpostwritten , which denotes the mean student test scores after the intervention and open. We want to see what the relationship between the fraction of days the school is open and student achievment. To this end, use the kernel regression code from lecture, to plot the kernel regression between these two variables using the R package np which Prof.Duﬂo illustrated in lecture.
+
+**Question 14**
+Use your code to generate plots for the following bandwidths, which of them seems most appropriate given the data? (select one)
+a. 0.04
+b. 0.001
+c. 1
+d. 20
+```{r}
+attach(schools)
+
+bw_0p04 <- npreg(xdat = pctpostwritten, ydat = open, bws = 0.04, bandwidth.compute = FALSE)
+plot(bw_0p04)
+
+detach(schools)
+```
+
+
+
+
+

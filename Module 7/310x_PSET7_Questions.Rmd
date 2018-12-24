@@ -192,7 +192,7 @@ Neyman$estimated_variance <-  (Neyman$estimated_treatment_variance/Neyman$num_tr
 Neyman$estimated_variance
 
 "Neyman upper bound of standard error (sqrt(variance))"
-sqrt(Neyman$variance)
+sqrt(Neyman$estimated_variance)
 ```
 
 **Question 8**
@@ -200,7 +200,7 @@ What is the t-statistic if we want to test the null hypothesis the ATE is equal 
 PLease round your answer to the second decimal point, i.e. if your answer is 4.567, please round to 4.57, and if it is 4.562, please round to 4.56.
 ```{r}
 "Neyman t-statistic under null (treatment effect = 0)"
-Neyman$t_stat_null <- (Neyman$ATE-0) / sqrt(Neyman$variance)
+Neyman$t_stat_null <- (Neyman$ATE-0) / sqrt(Neyman$estimated_variance)
 Neyman$t_stat_null
 ```
 
@@ -227,6 +227,31 @@ Neyman$upper_critical_value <- qt(0.95+(1-0.95)/2, df = (Neyman$num_treated+Neym
 Neyman$lower_bound <- Neyman$ATE - Neyman$upper_critical_value*sqrt(Neyman$estimated_variance)
 Neyman$upper_bound <- Neyman$ATE - Neyman$lower_critical_value*sqrt(Neyman$estimated_variance)
 cat("(", Neyman$lower_bound, ", ", Neyman$upper_bound, ")\n")
+
+Neyman
+```
+
+Now, imagine that you are considering a similar randomized experiment as the Duﬂo/Hanna/Ryan camera experiment, except you plan to give teachers lower incentives - half the monetary amount as in the Duﬂo/Hanna/Ryan experiment.
+
+**Question 11**
+If you think that the relationship between incentives and the variable open is linear, what would be the expected ATE of this new intervention?
+Please round your answer to the third decimal place, i.e. if it is 0.3414, please round to 0.341.
+```{r}
+"Average Treatment Effect when incentives cut down by half (linear relationship assumed)"
+1/2 * Neyman$ATE
+```
+
+**Question 12**
+Assume that this value is the minimum ATE such that the intervention is cost-effective. What is the sample size required to have a power of at least 90%, with the following properties?
+* with a significance level of 5%
+* an equal number of treated and control units
+* variance is the average of the variance of the control and the treatment group in the existing data
+a. 100
+b. 110
+c. 120
+d. 130
+```{r}
+
 ```
 
 

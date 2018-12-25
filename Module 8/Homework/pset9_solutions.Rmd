@@ -60,6 +60,34 @@ d. It is given by $$[0.08579005, 0.1000497]$$
 confint(lwage_s.linear, parm = "yrs_school", level = 0.9)
 ```
 
+**Question 3**
+Assume that instead of having all the data, you just know that the covariance between the logarithm of the wage and the years of schooling is 0.6043267. What other information would you need to be able to find $$\hat{\beta_{1}}$$?
+a. The sample variance of the variable yrs_school
+b. The sample variance of the variable lwage
+c. The sample variance of the error term
+d. The sample covariance between the error term and yrs_school
+```{r}
+
+```
+
+**Question 4**
+After running your code, what is the value you found for $$\hat{\beta}_{0}?$$
+Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123
+```{r}
+lwage_s.linear$coefficients
+```
+
+**Question 5**
+True or False: For any simple bivariate linear regression model, the predicted value when $$x = \overline{x}$$ is $$\overline{y}$$
+a. True
+b. False
+
+**Question 6**
+After running your model, use the command residuals to calculate the residuals of the regression. Calculate the sum of the residuals. Should we be surprised that the sum is so close to zero?
+a. Yes
+b. No
+
+
 
 
 

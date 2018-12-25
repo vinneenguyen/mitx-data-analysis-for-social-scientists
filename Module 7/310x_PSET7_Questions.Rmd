@@ -34,6 +34,7 @@ In order to complete this exercise we are providing you with the code 'problem1s
 library(tidyverse)
 library(perm)
 library(np)
+library(plyr)
 rm(list = ls())
 ```
 
@@ -297,19 +298,19 @@ attach(schools)
 
 "Bandwidth 0.04 model"
 bw_0p04 <- npreg(xdat = pctpostwritten, ydat = open, bws = 0.04, bandwidth.compute = FALSE)
-plot(bw_0p04)
+plot(bw_0p04, main = "Bandwidth 0.04 model")
 
 "Bandwidth 0.001 model"
 bw_0p001 <- npreg(xdat = pctpostwritten, ydat = open, bws = 0.001, bandwidth.compute = FALSE)
-plot(bw_0p001)
+plot(bw_0p001, main = "Bandwidth 0.001 model")
 
 "Bandwidth 1 model"
 bw_1 <- npreg(xdat = pctpostwritten, ydat = open, bws = 1, bandwidth.compute = FALSE)
-plot(bw_1)
+plot(bw_1, main = "Bandwidth 1 model")
 
 "Bandwidth 20 model"
 bw_20 <- npreg(xdat = pctpostwritten, ydat = open, bws = 20, bandwidth.compute = FALSE)
-plot(bw_20)
+plot(bw_20, main = "Bandwidth 20 model")
 
 detach(schools)
 ```
@@ -323,15 +324,16 @@ b. No
 scores <- select(schools, treatment, pctpostwritten)
 colnames(scores)[colnames(scores) == "treatment"] <- "group_name" # change column name from 'treatment' to 'group_name'
 scores$group_name <- recode(scores$group_name, '1' = "treatment", '0' = "control") # replace '1' with 'treatment', '0' with 'control' in 'group_name' column
-scores_by_groupname
+scores
 
 # Compute CDFs for treatment and control groups
-scores <- ddply(scores, .(group_name), transform, CDF = ecdf(pctpostwritten))
+scores <- ddply(scores, .(group_name), transform, CDF = ecdf(pctpostwritten)(pctpostwritten)) # ecdf(pctpostwritten) returns function, subsequently called on mean scores
 scores
 
 # Plot CDFs for treatment and control groups
 ggplot(scores, aes(x = pctpostwritten, colour = group_name)) + stat_ecdf() + labs(title = "CDFs of mean student test score for treatment and control groups", x = "mean score", y = "probability")
 ```
+
 
 
 

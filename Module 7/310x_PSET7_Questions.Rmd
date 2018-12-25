@@ -332,9 +332,6 @@ scores
 
 # Plot CDFs for treatment and control groups
 ggplot(scores, aes(x = pctpostwritten, colour = group_name)) + stat_ecdf() + labs(title = "CDFs of mean student test score for treatment and control groups", x = "mean score", y = "probability")
+"From the graph, the distribution of scores in the treatment group does not obviously FOSD that of the control group."
 ```
-
-
-
-
 

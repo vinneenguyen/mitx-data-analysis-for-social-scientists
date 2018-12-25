@@ -1,0 +1,27 @@
+---
+title: "14.310x: Data Analysis for Social Scientists - Homework 9"
+output: html_notebook
+---
+
+
+Welcome to your ninth homework assignment! You will have about one week to work through the
+assignment. We have provided this PDF copy of the assignment so that you can print and work through
+the assignment offline. You can also go online directly to complete the assignment. If you choose to work
+on the assignment using this PDF, please go back to the online platform to submit your answers based
+on the output produced.
+Good luck :)!
+
+```{r}
+# Preliminaries
+rm(list = ls())
+```
+
+For the following questions, you will need the data set: [nlsw88.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/965fe0633ade16afe13e0190ab45a225/asset-v1:MITx+14.310x+3T2018+type@asset+block/nlsw88.csv). The data has information on labor market outcomes of a representative sample of women in the US. It contains the following variables: the logarithm of wage (lwage), total years of schooling (yrs_school), total experience in the labor markets (ttl_experience), and a dummy variable that indicates whether the woman is black or not. Since we are going to work with this data throughout this homework, please load it into R using the command read.csv
+
+As a first step, we are interested in estimating the following linear model: 
+
+Estimate this equation by OLS using the command lm. Please go to the documentation in R to understand the syntax of the command. Based on your results, answer the following questions:
+
+
+
+

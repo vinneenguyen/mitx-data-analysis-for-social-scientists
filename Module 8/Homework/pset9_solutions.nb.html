@@ -1699,7 +1699,11 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>Welcome to your ninth homework assignment! You will have about one week to work through the assignment. We have provided this PDF copy of the assignment so that you can print and work through the assignment offline. You can also go online directly to complete the assignment. If you choose to work on the assignment using this PDF, please go back to the online platform to submit your answers based on the output produced. Good luck :)!</p>
+<p><br />
+<br />
+Welcome to your ninth homework assignment! You will have about one week to work through the assignment. We have provided this PDF copy of the assignment so that you can print and work through the assignment offline. You can also go online directly to complete the assignment. If you choose to work on the assignment using this PDF, please go back to the online platform to submit your answers based on the output produced.<br />
+Good luck :)!<br />
+</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmVsaW1pbmFyaWVzXG5ybShsaXN0ID0gbHMoKSlcbmBgYCJ9 -->
@@ -1708,7 +1712,8 @@ rm(list = ls())</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>For the following questions, you will need the data set: <a href="https://prod-edxapp.edx-cdn.org/assets/courseware/v1/965fe0633ade16afe13e0190ab45a225/asset-v1:MITx+14.310x+3T2018+type@asset+block/nlsw88.csv">nlsw88.csv</a>. The data has information on labor market outcomes of a representative sample of women in the US. It contains the following variables: the logarithm of wage (lwage), total years of schooling (yrs_school), total experience in the labor markets (ttl_experience), and a dummy variable that indicates whether the woman is black or not. Since we are going to work with this data throughout this homework, please load it into R using the command read.csv</p>
+<p>For the following questions, you will need the data set: <a href="https://prod-edxapp.edx-cdn.org/assets/courseware/v1/965fe0633ade16afe13e0190ab45a225/asset-v1:MITx+14.310x+3T2018+type@asset+block/nlsw88.csv">nlsw88.csv</a>. The data has information on labor market outcomes of a representative sample of women in the US. It contains the following variables: the logarithm of wage (lwage), total years of schooling (yrs_school), total experience in the labor markets (ttl_experience), and a dummy variable that indicates whether the woman is black or not. Since we are going to work with this data throughout this homework, please load it into R using the command read.csv<br />
+</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJEYXRhIGZpbGVcIlxuYGBgIn0= -->
@@ -1766,33 +1771,27 @@ women</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>As a first step, we are interested in estimating the following linear model: <span class="math display">\[
+<p>As a first step, we are interested in estimating the following linear model:<br />
+<span class="math display">\[
 log(wage_{i}) = \beta_{0} + \beta_{1} yrs\_school_{i} + \varepsilon_{i}
-\]</span> Estimate this equation by OLS using the command lm. Please go to the documentation in R to understand the syntax of the command. Based on your results, answer the following questions:</p>
-<p><strong>Question 1</strong> According to this model, what is the estimate of <span class="math display">\[\beta_{1}\]</span>? Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123</p>
+\]</span><br />
+Estimate this equation by OLS using the command lm. Please go to the documentation in R to understand the syntax of the command. Based on your results, answer the following questions:<br />
+</p>
+<p><strong>Question 1</strong><br />
+According to this model, what is the estimate of <span class="math inline">\(\beta_{1}\)</span>?<br />
+Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123<br />
+</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJSZWdyZXNzIGxvZ2FyaXRobSBvZiB3YWdlIChsd2FnZSkgZnJvbSB0b3RhbCB5ZWFycyBvZiBzY2hvb2xpbmcgKHlyc19zY2hvb2wpXCJcbmBgYCJ9 -->
-<pre class="r"><code>&quot;Regress logarithm of wage (lwage) from total years of schooling (yrs_school)&quot;</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJMaW5lYXIgbW9kZWwgZm9yIGxvZ2FyaXRobSBvZiB3YWdlIChsd2FnZSkgdy5yLnQgdG90YWwgeWVhcnMgb2Ygc2Nob29saW5nICh5cnNfc2Nob29sKVwiXG5gYGAifQ== -->
+<pre class="r"><code>&quot;Linear model for logarithm of wage (lwage) w.r.t total years of schooling (yrs_school)&quot;</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUmVncmVzcyBsb2dhcml0aG0gb2Ygd2FnZSAobHdhZ2UpIGZyb20gdG90YWwgeWVhcnMgb2Ygc2Nob29saW5nICh5cnNfc2Nob29sKVwiXG4ifQ== -->
-<pre><code>[1] &quot;Regress logarithm of wage (lwage) from total years of schooling (yrs_school)&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTGluZWFyIG1vZGVsIGZvciBsb2dhcml0aG0gb2Ygd2FnZSAobHdhZ2UpIHcuci50IHRvdGFsIHllYXJzIG9mIHNjaG9vbGluZyAoeXJzX3NjaG9vbClcIlxuIn0= -->
+<pre><code>[1] &quot;Linear model for logarithm of wage (lwage) w.r.t total years of schooling (yrs_school)&quot;</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2Vfcy5saW5lYXIgPC0gbG0obHdhZ2UgfiB5cnNfc2Nob29sLCBkYXRhID0gd29tZW4pXG5sd2FnZV9zLmxpbmVhclxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2Vfcy5saW5lYXIgPC0gbG0obHdhZ2UgfiB5cnNfc2Nob29sLCBkYXRhID0gd29tZW4pXG5zdW1tYXJ5KGx3YWdlX3MubGluZWFyKVxuYGBgIn0= -->
 <pre class="r"><code>lwage_s.linear &lt;- lm(lwage ~ yrs_school, data = women)
-lwage_s.linear</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IGx3YWdlIH4geXJzX3NjaG9vbCwgZGF0YSA9IHdvbWVuKVxuXG5Db2VmZmljaWVudHM6XG4oSW50ZXJjZXB0KSAgIHlyc19zY2hvb2wgIFxuICAgIDAuNjUyNTggICAgICAwLjA5MjkyICBcbiJ9 -->
-<pre><code>
-Call:
-lm(formula = lwage ~ yrs_school, data = women)
-
-Coefficients:
-(Intercept)   yrs_school  
-    0.65258      0.09292  </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShsd2FnZV9zLmxpbmVhcilcbmBgYCJ9 -->
-<pre class="r"><code>summary(lwage_s.linear)</code></pre>
+summary(lwage_s.linear)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IGx3YWdlIH4geXJzX3NjaG9vbCwgZGF0YSA9IHdvbWVuKVxuXG5SZXNpZHVhbHM6XG4gICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCBcbi0yLjI5MzQwIC0wLjMyNjExIC0wLjAwODA3ICAwLjI5NDcxICAyLjIwNDk2IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAwLjY1MjU3OCAgIDAuMDU3NzcxICAgMTEuMzAgICA8MmUtMTYgKioqXG55cnNfc2Nob29sICAwLjA5MjkyMCAgIDAuMDA0MzMzICAgMjEuNDUgICA8MmUtMTYgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDAuNTIzNiBvbiAyMjQ0IGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC4xNzAxLFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC4xNjk3IFxuRi1zdGF0aXN0aWM6IDQ1OS45IG9uIDEgYW5kIDIyNDQgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
 <pre><code>
@@ -1816,7 +1815,13 @@ F-statistic: 459.9 on 1 and 2244 DF,  p-value: &lt; 2.2e-16</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Question 2</strong> What is the <span class="math display">\[90\%\]</span> confidence interval (CI) of <span class="math display">\[\hat{\beta}_{1}\]</span> according to this model? a. It is given by <span class="math display">\[[0.08174972,  0.1040900]\]</span> b. It is given by <span class="math display">\[[0.08736549, 0.09847428]\]</span> c. It is given by <span class="math display">\[[0.08442308, 0.1014167]\]</span> d. It is given by <span class="math display">\[[0.08579005, 0.1000497]\]</span></p>
+<p><strong>Question 2</strong><br />
+What is the <span class="math inline">\(90\%\)</span> confidence interval (CI) of <span class="math inline">\(\hat{\beta}_{1}\)</span> according to this model?<br />
+a. It is given by <span class="math inline">\([0.08174972, 0.1040900]\)</span><br />
+b. It is given by <span class="math inline">\([0.08736549, 0.09847428]\)</span><br />
+c. It is given by <span class="math inline">\([0.08442308, 0.1014167]\)</span><br />
+d. It is given by <span class="math inline">\([0.08579005, 0.1000497]\)</span><br />
+</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJDb25maWRlbmNlIGludGVydmFsIG9mIEJldGEgMSBlc3RpbWF0ZSAoYXNzb2NpYXRlZCB3aXRoIHlyc19zY2hvb2wpXCJcbmBgYCJ9 -->
@@ -1834,17 +1839,27 @@ yrs_school 0.08579005 0.1000497</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Question 3</strong> Assume that instead of having all the data, you just know that the covariance between the logarithm of the wage and the years of schooling is 0.6043267. What other information would you need to be able to find <span class="math display">\[\hat{\beta_{1}}\]</span>? a. The sample variance of the variable yrs_school b. The sample variance of the variable lwage c. The sample variance of the error term d. The sample covariance between the error term and yrs_school</p>
+<p><strong>Question 3</strong><br />
+Assume that instead of having all the data, you just know that the covariance between the logarithm of the wage and the years of schooling is 0.6043267. What other information would you need to be able to find <span class="math inline">\(\hat{\beta_{1}}\)</span>?<br />
+a. The sample variance of the variable yrs_school<br />
+b. The sample variance of the variable lwage<br />
+c. The sample variance of the error term<br />
+d. The sample covariance between the error term and yrs_school<br />
+<span class="math display">\[
+\hat{\beta_{1}} = \frac{\frac{1}{n} \sum( x_{i} -\overline{x}) ( y_{i} -\overline{y})}{ \frac{1}{n} \sum 
+  ( x_{i} -\overline{x})^{2} }
+\]</span><br />
+In the numerator is the expression for the covariance between x and y.<br />
+In the doniminator is the expression for the variance of x.<br />
+</p>
+<p><strong>Question 4</strong><br />
+After running your code, what is the value you found for <span class="math inline">\(\hat{\beta}_{0}?\)</span><br />
+Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123<br />
+</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p><strong>Question 4</strong> After running your code, what is the value you found for <span class="math display">\[\hat{\beta}_{0}?\]</span> Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2Vfcy5saW5lYXIkY29lZmZpY2llbnRzXG5cbmBgYCJ9 -->
-<pre class="r"><code>lwage_s.linear$coefficients
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2Vfcy5saW5lYXIkY29lZmZpY2llbnRzXG5gYGAifQ== -->
+<pre class="r"><code>lwage_s.linear$coefficients</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiKEludGVyY2VwdCkgIHlyc19zY2hvb2wgXG4gMC42NTI1Nzc3NCAgMC4wOTI5MTk4OCBcbiJ9 -->
 <pre><code>(Intercept)  yrs_school 
@@ -1852,11 +1867,229 @@ yrs_school 0.08579005 0.1000497</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Question 5</strong> True or False: For any simple bivariate linear regression model, the predicted value when <span class="math display">\[x = \overline{x}\]</span> is <span class="math display">\[\overline{y}\]</span> a. True b. False</p>
-<p><strong>Question 6</strong> After running your model, use the command residuals to calculate the residuals of the regression. Calculate the sum of the residuals. Should we be surprised that the sum is so close to zero? a. Yes b. No</p>
+<p><strong>Question 5</strong><br />
+True or False: For any simple bivariate linear regression model, the predicted value when <span class="math inline">\(x = \overline{x}\)</span> is <span class="math inline">\(\overline{y}\)</span><br />
+a. True<br />
+b. False<br />
+</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJUcnVlXCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;True&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiVHJ1ZVwiXG4ifQ== -->
+<pre><code>[1] &quot;True&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Question 6</strong><br />
+After running your model, use the command residuals to calculate the residuals of the regression. Calculate the sum of the residuals. Should we be surprised that the sum is so close to zero?<br />
+a. Yes<br />
+b. No<br />
+</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJSZXNpZHVhbHNcIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;Residuals&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUmVzaWR1YWxzXCJcbiJ9 -->
+<pre><code>[1] &quot;Residuals&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGx3YWdlX3MubGluZWFyJHJlc2lkdWFscylcbmBgYCJ9 -->
+<pre class="r"><code>str(lwage_s.linear$residuals)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIE5hbWVkIG51bSBbMToyMjQ2XSAwLjY5NTMgMC4wODg4IC0wLjE1NDggLTAuMDMxMiAwLjMyMjIgLi4uXG4gLSBhdHRyKCosIFwibmFtZXNcIik9IGNociBbMToyMjQ2XSBcIjFcIiBcIjJcIiBcIjNcIiBcIjRcIiAuLi5cbiJ9 -->
+<pre><code> Named num [1:2246] 0.6953 0.0888 -0.1548 -0.0312 0.3222 ...
+ - attr(*, &quot;names&quot;)= chr [1:2246] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJTdW0gb2YgcmVzaWR1YWxzXCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;Sum of residuals&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU3VtIG9mIHJlc2lkdWFsc1wiXG4ifQ== -->
+<pre><code>[1] &quot;Sum of residuals&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtKGx3YWdlX3MubGluZWFyJHJlc2lkdWFscylcbmBgYCJ9 -->
+<pre class="r"><code>sum(lwage_s.linear$residuals)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuMjQzMjc2ZS0xNFxuIn0= -->
+<pre><code>[1] 1.243276e-14</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now, we are interested in estimating the following model:<br />
+<span class="math display">\[
+\log(wage_{i}) = \beta_{0} + \beta_{1} black + \varepsilon_{i}
+\]</span><br />
+</p>
+<p><strong>Question 7</strong><br />
+Researcher A says that this model is not correctly specified. Researcher A suggests that the correct model should estimate the following equation (where <span class="math inline">\(other \; race\)</span> is a dummy variable equal to 1 when the person is not black):<br />
+<span class="math display">\[
+log(wage_{i}) = \beta_{0} + \beta_{1} black + \beta_{2} other \;  race + \varepsilon_{i}
+\]</span><br />
+Researcher B claims that Researcher A is wrong, and that in this second model, it is not possible to separately identify <span class="math inline">\(\beta_{0},\; \beta_{1},\; \text{and } \beta_{2}.\)</span> Who do you agree with?<br />
+a. Researcher A<br />
+b. Researcher B<br />
+</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJSZXNlYXJjaGVyIEJcIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;Researcher B&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUmVzZWFyY2hlciBCXCJcbiJ9 -->
+<pre><code>[1] &quot;Researcher B&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Question 8</strong><br />
+Assume that you don’t have all the data. However, you know that the sample mean of the log wage for women who are not black is <span class="math inline">\(\overline{y}_{other}\)</span>, and the sample mean of the log wage for black women is <span class="math inline">\(\overline{y}_{black}.\)</span> What are the values of <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> if we run this model using OLS?<br />
+a. We have that <span class="math inline">\(\hat{\beta}_{0}=\overline{y}_{black}\)</span> and <span class="math inline">\(\hat{\beta}_{1}=\overline{y}_{other}-\overline{y}_{other}\)</span><br />
+b. We have that <span class="math inline">\(\hat{\beta}_{0}=\overline{y}_{black}\)</span> and <span class="math inline">\(\hat{\beta}_{1}=\overline{y}_{black}-\overline{y}_{other}\)</span><br />
+c.We have that <span class="math inline">\(\hat{\beta}_{0}=\overline{y}_{other}\)</span> and <span class="math inline">\(\hat{\beta}_{1}=\overline{y}_{black}-\overline{y}_{other}\)</span><br />
+d. We have that <span class="math inline">\(\hat{\beta}_{0}=\overline{y}_{other}\)</span> and <span class="math inline">\(\hat{\beta}_{1}=\overline{y}_{other}-\overline{y}_{other}\)</span><br />
+</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJjXCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;c&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiY1wiXG4ifQ== -->
+<pre><code>[1] &quot;c&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Question 9</strong><br />
+Now, estimate this model by yourself using both the sample means approach and the regression approach with the command lm. (You should get the same results!)<br />
+For the following answers, please round to the third decimal place, i.e. if the solution is 0.23412, please round to 0.234, and if it is 0.23498, please round to 0.235.<br />
+What value did you find for <span class="math inline">\(\hat{\beta}_{0}\)</span>?<br />
+</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJMaW5lYXIgbW9kZWwgZm9yIGxvZ2FyaXRobSBvZiB3YWdlIChsd2FnZSkgdy5yLnQgcmFjZSAoYmxhY2spXCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;Linear model for logarithm of wage (lwage) w.r.t race (black)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTGluZWFyIG1vZGVsIGZvciBsb2dhcml0aG0gb2Ygd2FnZSAobHdhZ2UpIHcuci50IHJhY2UgKGJsYWNrKVwiXG4ifQ== -->
+<pre><code>[1] &quot;Linear model for logarithm of wage (lwage) w.r.t race (black)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2VfYi5saW5lYXIgPC0gbG0obHdhZ2UgfiBibGFjaywgZGF0YSA9IHdvbWVuKVxuc3VtbWFyeV9sd2FnZV9iIDwtIHN1bW1hcnkobHdhZ2VfYi5saW5lYXIpXG5zdW1tYXJ5X2x3YWdlX2JcbmBgYCJ9 -->
+<pre class="r"><code>lwage_b.linear &lt;- lm(lwage ~ black, data = women)
+summary_lwage_b &lt;- summary(lwage_b.linear)
+summary_lwage_b</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IGx3YWdlIH4gYmxhY2ssIGRhdGEgPSB3b21lbilcblxuUmVzaWR1YWxzOlxuICAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggXG4tMS45MDY2NyAtMC40MDI5MCAtMC4wMzQxOCAgMC4zNzEwNSAgMS45NjEyOSBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0IHZhbHVlIFByKD58dHwpICAgIFxuKEludGVyY2VwdCkgIDEuOTExNjEgICAgMC4wMTM5OCAxMzYuNzM5ICA8IDJlLTE2ICoqKlxuYmxhY2sgICAgICAgLTAuMTY1NTQgICAgMC4wMjc0NCAgLTYuMDMzIDEuODhlLTA5ICoqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAwLjU3MDEgb24gMjI0NCBkZWdyZWVzIG9mIGZyZWVkb21cbk11bHRpcGxlIFItc3F1YXJlZDogIDAuMDE1OTYsXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjAxNTUyIFxuRi1zdGF0aXN0aWM6IDM2LjM5IG9uIDEgYW5kIDIyNDQgREYsICBwLXZhbHVlOiAxLjg4ZS0wOVxuIn0= -->
+<pre><code>
+Call:
+lm(formula = lwage ~ black, data = women)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.90667 -0.40290 -0.03418  0.37105  1.96129 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.91161    0.01398 136.739  &lt; 2e-16 ***
+black       -0.16554    0.02744  -6.033 1.88e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5701 on 2244 degrees of freedom
+Multiple R-squared:  0.01596,   Adjusted R-squared:  0.01552 
+F-statistic: 36.39 on 1 and 2244 DF,  p-value: 1.88e-09</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJNZWFucyBvZiBsb2dhcml0aG0gb2Ygd2FnZSAobHdhZ2UpIGJ5IHJhY2UgKGJsYWNrKVwiXG5gYGAifQ== -->
+<pre class="r"><code>&quot;Means of logarithm of wage (lwage) by race (black)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWVhbnMgb2YgbG9nYXJpdGhtIG9mIHdhZ2UgKGx3YWdlKSBieSByYWNlIChibGFjaylcIlxuIn0= -->
+<pre><code>[1] &quot;Means of logarithm of wage (lwage) by race (black)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2VfbWVhbnNfYiA8LSBkZHBseSh3b21lbiwgLnZhcmlhYmxlcyA9IC4oYmxhY2spLCAuZnVuID0gc3VtbWFyaXNlLCBsd2FnZV9tZWFuID0gbWVhbihsd2FnZSkpXG5sd2FnZV9tZWFuc19iXG5gYGAifQ== -->
+<pre class="r"><code>lwage_means_b &lt;- ddply(women, .variables = .(black), .fun = summarise, lwage_mean = mean(lwage))
+lwage_means_b</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6Mn0sInJkZiI6IlVrUllNZ3BZQ2dBQUFBSUFBd1VBQUFJREFBQUFCQUlBQUFBQkFBUUFDUUFBQUFGNEFBQURFd0FBQUFJQUFBQU5BQUFBQWdBQUFBQUFBQUFCQUFBQURnQUFBQUkvL3BYNER6dmxpei83Nys5SzkzNU1BQUFFQWdBQUFBRUFCQUFKQUFBQUJXNWhiV1Z6QUFBQUVBQUFBQUlBQkFBSkFBQUFCV0pzWVdOckFBUUFDUUFBQUFwc2QyRm5aVjl0WldGdUFBQUVBZ0FBQUFFQUJBQUpBQUFBQ1hKdmR5NXVZVzFsY3dBQUFBMEFBQUFDQUFBQUFRQUFBQUlBQUFRQ0FBQUFBUUFFQUFrQUFBQUZZMnhoYzNNQUFBQVFBQUFBQVFBRUFBa0FBQUFLWkdGMFlTNW1jbUZ0WlFBQUFQNEFBQVFDQUFBQUFRQUVBQWtBQUFBSGIzQjBhVzl1Y3dBQUFoTUFBQUFGQUFBQUVBQUFBQUVBQkFBSkFBQUFBWElBQUFBUUFBQUFBUUFFQUFrQUFBQVFkVzV1WVcxbFpDMWphSFZ1YXkwME13QUFBQW9BQUFBQkFBQUFBQUFBQUEwQUFBQUJBQUFBQWdBQUFBMEFBQUFCQUFBQUFnQUFCQUlBQUFML0FBQUFFQUFBQUFVQUJBQUpBQUFBQm1WdVoybHVaUUFFQUFrQUFBQUZiR0ZpWld3QUJBQUpBQUFBRG5KdmQyNWhiV1Z6TG5CeWFXNTBBQVFBQ1FBQUFBcHliM2R6TG5SdmRHRnNBQVFBQ1FBQUFBcGpiMnh6TG5SdmRHRnNBQUFBL2dBQUFQND0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["black"],"name":[1],"type":["int"],"align":["right"]},{"label":["lwage_mean"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"1.911614"},{"1":"1","2":"1.746078"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cIkNvZWZmaWNpZW50IEJldGEgMCAodXNpbmcgcmVncmVzc2lvbiBhcHByb2FjaClcIlxuYGBgIn0= -->
+<pre class="r"><code>
+&quot;Coefficient Beta 0 (using regression approach)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQ29lZmZpY2llbnQgQmV0YSAwICh1c2luZyByZWdyZXNzaW9uIGFwcHJvYWNoKVwiXG4ifQ== -->
+<pre><code>[1] &quot;Coefficient Beta 0 (using regression approach)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2VfYi5saW5lYXIkY29lZmZpY2llbnRzW1wiKEludGVyY2VwdClcIl1cbmBgYCJ9 -->
+<pre class="r"><code>lwage_b.linear$coefficients[&quot;(Intercept)&quot;]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiKEludGVyY2VwdCkgXG4gICAxLjkxMTYxNCBcbiJ9 -->
+<pre><code>(Intercept) 
+   1.911614 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJDb2VmZmljaWVudCBCZXRhIDAgKHVzaW5nIHNhbXBsZSBtZWFucyBhcHByb2FjaClcIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;Coefficient Beta 0 (using sample means approach)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQ29lZmZpY2llbnQgQmV0YSAwICh1c2luZyBzYW1wbGUgbWVhbnMgYXBwcm9hY2gpXCJcbiJ9 -->
+<pre><code>[1] &quot;Coefficient Beta 0 (using sample means approach)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmlsdGVyKGx3YWdlX21lYW5zX2IsIGJsYWNrID09IDApJGx3YWdlX21lYW5cbmBgYCJ9 -->
+<pre class="r"><code>filter(lwage_means_b, black == 0)$lwage_mean</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuOTExNjE0XG4ifQ== -->
+<pre><code>[1] 1.911614</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>What value did you find for <span class="math inline">\(\hat{\beta}_{1}\)</span>?<br />
+</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJDb2VmZmljaWVudCBCZXRhIDEgKG9uIGJsYWNrKSAodXNpbmcgcmVncmVzc2lvbiBhcHByb2FjaClcIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;Coefficient Beta 1 (on black) (using regression approach)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQ29lZmZpY2llbnQgQmV0YSAxIChvbiBibGFjaykgKHVzaW5nIHJlZ3Jlc3Npb24gYXBwcm9hY2gpXCJcbiJ9 -->
+<pre><code>[1] &quot;Coefficient Beta 1 (on black) (using regression approach)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHdhZ2VfYi5saW5lYXIkY29lZmZpY2llbnRzW1wiYmxhY2tcIl1cbmBgYCJ9 -->
+<pre class="r"><code>lwage_b.linear$coefficients[&quot;black&quot;]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBibGFjayBcbi0wLjE2NTUzNTcgXG4ifQ== -->
+<pre><code>     black 
+-0.1655357 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJDb2VmZmljaWVudCBCZXRhIDEgKG9uIGJsYWNrKSAodXNpbmcgc2FtcGxlIG1lYW5zIGFwcHJvYWNoKVwiXG5gYGAifQ== -->
+<pre class="r"><code>&quot;Coefficient Beta 1 (on black) (using sample means approach)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQ29lZmZpY2llbnQgQmV0YSAxIChvbiBibGFjaykgKHVzaW5nIHNhbXBsZSBtZWFucyBhcHByb2FjaClcIlxuIn0= -->
+<pre><code>[1] &quot;Coefficient Beta 1 (on black) (using sample means approach)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmlsdGVyKGx3YWdlX21lYW5zX2IsIGJsYWNrID09IDEpJGx3YWdlX21lYW4gLSBmaWx0ZXIobHdhZ2VfbWVhbnNfYiwgYmxhY2sgPT0gMCkkbHdhZ2VfbWVhblxuYGBgIn0= -->
+<pre class="r"><code>filter(lwage_means_b, black == 1)$lwage_mean - filter(lwage_means_b, black == 0)$lwage_mean</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIC0wLjE2NTUzNTdcbiJ9 -->
+<pre><code>[1] -0.1655357</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Question 10</strong><br />
+A critic is claiming that this doesn’t prove that there are differences in the wage of black women and women of other races. You decide to conduct a test on the parameter <span class="math inline">\(\beta_{1},\)</span> where the null hypothesis is <span class="math inline">\(\beta_{1} =0.\)</span> What is the value of the statistic of this test?<br />
+Please round to the third decimal place, i.e. if the solution is 0.23412, please round to 0.234, and if it is 0.23498, please round to 0.235.<br />
+</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeV9sd2FnZV9iJGNvZWZmaWNpZW50c1ssIFwidCB2YWx1ZVwiXVxuXG5gYGAifQ== -->
+<pre class="r"><code>summary_lwage_b$coefficients[, &quot;t value&quot;]
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiKEludGVyY2VwdCkgICAgICAgYmxhY2sgXG4gMTM2LjczOTAyNCAgIC02LjAzMjcyNCBcbiJ9 -->
+<pre><code>(Intercept)       black 
+ 136.739024   -6.032724 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiMTQuMzEweDogRGF0YSBBbmFseXNpcyBmb3IgU29jaWFsIFNjaWVudGlzdHMgLSBIb21ld29yayA5IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKV2VsY29tZSB0byB5b3VyIG5pbnRoIGhvbWV3b3JrIGFzc2lnbm1lbnQhIFlvdSB3aWxsIGhhdmUgYWJvdXQgb25lIHdlZWsgdG8gd29yayB0aHJvdWdoIHRoZQphc3NpZ25tZW50LiBXZSBoYXZlIHByb3ZpZGVkIHRoaXMgUERGIGNvcHkgb2YgdGhlIGFzc2lnbm1lbnQgc28gdGhhdCB5b3UgY2FuIHByaW50IGFuZCB3b3JrIHRocm91Z2gKdGhlIGFzc2lnbm1lbnQgb2ZmbGluZS4gWW91IGNhbiBhbHNvIGdvIG9ubGluZSBkaXJlY3RseSB0byBjb21wbGV0ZSB0aGUgYXNzaWdubWVudC4gSWYgeW91IGNob29zZSB0byB3b3JrCm9uIHRoZSBhc3NpZ25tZW50IHVzaW5nIHRoaXMgUERGLCBwbGVhc2UgZ28gYmFjayB0byB0aGUgb25saW5lIHBsYXRmb3JtIHRvIHN1Ym1pdCB5b3VyIGFuc3dlcnMgYmFzZWQKb24gdGhlIG91dHB1dCBwcm9kdWNlZC4KR29vZCBsdWNrIDopIQoKYGBge3J9CiMgUHJlbGltaW5hcmllcwpybShsaXN0ID0gbHMoKSkKYGBgCgpGb3IgdGhlIGZvbGxvd2luZyBxdWVzdGlvbnMsIHlvdSB3aWxsIG5lZWQgdGhlIGRhdGEgc2V0OiBbbmxzdzg4LmNzdl0oaHR0cHM6Ly9wcm9kLWVkeGFwcC5lZHgtY2RuLm9yZy9hc3NldHMvY291cnNld2FyZS92MS85NjVmZTA2MzNhZGUxNmFmZTEzZTAxOTBhYjQ1YTIyNS9hc3NldC12MTpNSVR4KzE0LjMxMHgrM1QyMDE4K3R5cGVAYXNzZXQrYmxvY2svbmxzdzg4LmNzdikuIFRoZSBkYXRhIGhhcyBpbmZvcm1hdGlvbiBvbiBsYWJvciBtYXJrZXQgb3V0Y29tZXMgb2YgYSByZXByZXNlbnRhdGl2ZSBzYW1wbGUgb2Ygd29tZW4gaW4gdGhlIFVTLiBJdCBjb250YWlucyB0aGUgZm9sbG93aW5nIHZhcmlhYmxlczogdGhlIGxvZ2FyaXRobSBvZiB3YWdlIChsd2FnZSksIHRvdGFsIHllYXJzIG9mIHNjaG9vbGluZyAoeXJzX3NjaG9vbCksIHRvdGFsIGV4cGVyaWVuY2UgaW4gdGhlIGxhYm9yIG1hcmtldHMgKHR0bF9leHBlcmllbmNlKSwgYW5kIGEgZHVtbXkgdmFyaWFibGUgdGhhdCBpbmRpY2F0ZXMgd2hldGhlciB0aGUgd29tYW4gaXMgYmxhY2sgb3Igbm90LiBTaW5jZSB3ZSBhcmUgZ29pbmcgdG8gd29yayB3aXRoIHRoaXMgZGF0YSB0aHJvdWdob3V0IHRoaXMgaG9tZXdvcmssIHBsZWFzZSBsb2FkIGl0IGludG8gUiB1c2luZyB0aGUgY29tbWFuZCByZWFkLmNzdgoKYGBge3J9CiJEYXRhIGZpbGUiCmRhdGFfdXJsIDwtICJodHRwczovL3Byb2QtZWR4YXBwLmVkeC1jZG4ub3JnL2Fzc2V0cy9jb3Vyc2V3YXJlL3YxLzk2NWZlMDYzM2FkZTE2YWZlMTNlMDE5MGFiNDVhMjI1L2Fzc2V0LXYxOk1JVHgrMTQuMzEweCszVDIwMTgrdHlwZUBhc3NldCtibG9jay9ubHN3ODguY3N2IgpkYXRhX2ZpbGUgPC0gIkRhdGEvbmxzdzg4LmNzdiIKaWYgKCFmaWxlLmV4aXN0cyhkYXRhX2ZpbGUpKSB7CiAgZG93bmxvYWQuZmlsZShkYXRhX3VybCwgZGVzdGZpbGUgPSBkYXRhX2ZpbGUsIG1ldGhvZCA9ICJhdXRvIikKfQpkYXRhX2ZpbGUKCiJJbmZvcm1hdGlvbiBvbiBsYWJvciBtYXJrZXQgb3V0Y29tZXMgb2YgYSByZXByZXNlbnRhdGl2ZSBzYW1wbGUgb2Ygd29tZW4gaW4gdGhlIFVTIgp3b21lbiA8LSByZWFkLmNzdihkYXRhX2ZpbGUpCndvbWVuCnN1bW1hcnkod29tZW4pCmBgYAoKQXMgYSBmaXJzdCBzdGVwLCB3ZSBhcmUgaW50ZXJlc3RlZCBpbiBlc3RpbWF0aW5nIHRoZSBmb2xsb3dpbmcgbGluZWFyIG1vZGVsOgokJApsb2cod2FnZV97aX0pID0gXGJldGFfezB9ICsgXGJldGFfezF9IHlyc1xfc2Nob29sX3tpfSArIFx2YXJlcHNpbG9uX3tpfQokJApFc3RpbWF0ZSB0aGlzIGVxdWF0aW9uIGJ5IE9MUyB1c2luZyB0aGUgY29tbWFuZCBsbS4gUGxlYXNlIGdvIHRvIHRoZSBkb2N1bWVudGF0aW9uIGluIFIgdG8gdW5kZXJzdGFuZCB0aGUgc3ludGF4IG9mIHRoZSBjb21tYW5kLiBCYXNlZCBvbiB5b3VyIHJlc3VsdHMsIGFuc3dlciB0aGUgZm9sbG93aW5nIHF1ZXN0aW9uczoKCioqUXVlc3Rpb24gMSoqCkFjY29yZGluZyB0byB0aGlzIG1vZGVsLCB3aGF0IGlzIHRoZSBlc3RpbWF0ZSBvZiAkJFxiZXRhX3sxfSQkPwpQbGVhc2Ugcm91bmQgeW91ciBhbnN3ZXIgdG8gdGhlIHRoaXJkIGRlY2ltYWwgcG9pbnQsIGkuZS4gaWYgaXQgaXMgMC4xMjQ5NCwgcGxlYXNlIHJvdW5kIHRvIDAuMTI1IGFuZCBpZiBpdCBpcyAwLjEyMzMsIHBsZWFzZSByb3VuZCB0byAwLjEyMwpgYGB7cn0KIlJlZ3Jlc3MgbG9nYXJpdGhtIG9mIHdhZ2UgKGx3YWdlKSBmcm9tIHRvdGFsIHllYXJzIG9mIHNjaG9vbGluZyAoeXJzX3NjaG9vbCkiCmx3YWdlX3MubGluZWFyIDwtIGxtKGx3YWdlIH4geXJzX3NjaG9vbCwgZGF0YSA9IHdvbWVuKQpsd2FnZV9zLmxpbmVhcgpzdW1tYXJ5KGx3YWdlX3MubGluZWFyKQpgYGAKCioqUXVlc3Rpb24gMioqCldoYXQgaXMgdGhlICQkOTBcJSQkIGNvbmZpZGVuY2UgaW50ZXJ2YWwgKENJKSBvZiAkJFxoYXR7XGJldGF9X3sxfSQkIGFjY29yZGluZyB0byB0aGlzIG1vZGVsPwphLiBJdCBpcyBnaXZlbiBieSAkJFswLjA4MTc0OTcyLCAgMC4xMDQwOTAwXSQkCmIuIEl0IGlzIGdpdmVuIGJ5ICQkWzAuMDg3MzY1NDksIDAuMDk4NDc0MjhdJCQKYy4gSXQgaXMgZ2l2ZW4gYnkgJCRbMC4wODQ0MjMwOCwgMC4xMDE0MTY3XSQkCmQuIEl0IGlzIGdpdmVuIGJ5ICQkWzAuMDg1NzkwMDUsIDAuMTAwMDQ5N10kJApgYGB7cn0KIkNvbmZpZGVuY2UgaW50ZXJ2YWwgb2YgQmV0YSAxIGVzdGltYXRlIChhc3NvY2lhdGVkIHdpdGggeXJzX3NjaG9vbCkiCmNvbmZpbnQobHdhZ2Vfcy5saW5lYXIsIHBhcm0gPSAieXJzX3NjaG9vbCIsIGxldmVsID0gMC45KQpgYGAKCioqUXVlc3Rpb24gMyoqCkFzc3VtZSB0aGF0IGluc3RlYWQgb2YgaGF2aW5nIGFsbCB0aGUgZGF0YSwgeW91IGp1c3Qga25vdyB0aGF0IHRoZSBjb3ZhcmlhbmNlIGJldHdlZW4gdGhlIGxvZ2FyaXRobSBvZiB0aGUgd2FnZSBhbmQgdGhlIHllYXJzIG9mIHNjaG9vbGluZyBpcyAwLjYwNDMyNjcuIFdoYXQgb3RoZXIgaW5mb3JtYXRpb24gd291bGQgeW91IG5lZWQgdG8gYmUgYWJsZSB0byBmaW5kICQkXGhhdHtcYmV0YV97MX19JCQ/CmEuIFRoZSBzYW1wbGUgdmFyaWFuY2Ugb2YgdGhlIHZhcmlhYmxlIHlyc19zY2hvb2wKYi4gVGhlIHNhbXBsZSB2YXJpYW5jZSBvZiB0aGUgdmFyaWFibGUgbHdhZ2UKYy4gVGhlIHNhbXBsZSB2YXJpYW5jZSBvZiB0aGUgZXJyb3IgdGVybQpkLiBUaGUgc2FtcGxlIGNvdmFyaWFuY2UgYmV0d2VlbiB0aGUgZXJyb3IgdGVybSBhbmQgeXJzX3NjaG9vbApgYGB7cn0KCmBgYAoKKipRdWVzdGlvbiA0KioKQWZ0ZXIgcnVubmluZyB5b3VyIGNvZGUsIHdoYXQgaXMgdGhlIHZhbHVlIHlvdSBmb3VuZCBmb3IgJCRcaGF0e1xiZXRhfV97MH0/JCQKUGxlYXNlIHJvdW5kIHlvdXIgYW5zd2VyIHRvIHRoZSB0aGlyZCBkZWNpbWFsIHBvaW50LCBpLmUuIGlmIGl0IGlzIDAuMTI0OTQsIHBsZWFzZSByb3VuZCB0byAwLjEyNSBhbmQgaWYgaXQgaXMgMC4xMjMzLCBwbGVhc2Ugcm91bmQgdG8gMC4xMjMKYGBge3J9Cmx3YWdlX3MubGluZWFyJGNvZWZmaWNpZW50cwpgYGAKCioqUXVlc3Rpb24gNSoqClRydWUgb3IgRmFsc2U6IEZvciBhbnkgc2ltcGxlIGJpdmFyaWF0ZSBsaW5lYXIgcmVncmVzc2lvbiBtb2RlbCwgdGhlIHByZWRpY3RlZCB2YWx1ZSB3aGVuICQkeCA9IFxvdmVybGluZXt4fSQkIGlzICQkXG92ZXJsaW5le3l9JCQKYS4gVHJ1ZQpiLiBGYWxzZQoKKipRdWVzdGlvbiA2KioKQWZ0ZXIgcnVubmluZyB5b3VyIG1vZGVsLCB1c2UgdGhlIGNvbW1hbmQgcmVzaWR1YWxzIHRvIGNhbGN1bGF0ZSB0aGUgcmVzaWR1YWxzIG9mIHRoZSByZWdyZXNzaW9uLiBDYWxjdWxhdGUgdGhlIHN1bSBvZiB0aGUgcmVzaWR1YWxzLiBTaG91bGQgd2UgYmUgc3VycHJpc2VkIHRoYXQgdGhlIHN1bSBpcyBzbyBjbG9zZSB0byB6ZXJvPwphLiBZZXMKYi4gTm8KCgoKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiMTQuMzEweDogRGF0YSBBbmFseXNpcyBmb3IgU29jaWFsIFNjaWVudGlzdHMgLSBIb21ld29yayA5IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tClwKXApXZWxjb21lIHRvIHlvdXIgbmludGggaG9tZXdvcmsgYXNzaWdubWVudCEgWW91IHdpbGwgaGF2ZSBhYm91dCBvbmUgd2VlayB0byB3b3JrIHRocm91Z2ggdGhlCmFzc2lnbm1lbnQuIFdlIGhhdmUgcHJvdmlkZWQgdGhpcyBQREYgY29weSBvZiB0aGUgYXNzaWdubWVudCBzbyB0aGF0IHlvdSBjYW4gcHJpbnQgYW5kIHdvcmsgdGhyb3VnaAp0aGUgYXNzaWdubWVudCBvZmZsaW5lLiBZb3UgY2FuIGFsc28gZ28gb25saW5lIGRpcmVjdGx5IHRvIGNvbXBsZXRlIHRoZSBhc3NpZ25tZW50LiBJZiB5b3UgY2hvb3NlIHRvIHdvcmsKb24gdGhlIGFzc2lnbm1lbnQgdXNpbmcgdGhpcyBQREYsIHBsZWFzZSBnbyBiYWNrIHRvIHRoZSBvbmxpbmUgcGxhdGZvcm0gdG8gc3VibWl0IHlvdXIgYW5zd2VycyBiYXNlZApvbiB0aGUgb3V0cHV0IHByb2R1Y2VkLlwKR29vZCBsdWNrIDopIVwKCmBgYHtyfQojIFByZWxpbWluYXJpZXMKcm0obGlzdCA9IGxzKCkpCmBgYAoKRm9yIHRoZSBmb2xsb3dpbmcgcXVlc3Rpb25zLCB5b3Ugd2lsbCBuZWVkIHRoZSBkYXRhIHNldDogW25sc3c4OC5jc3ZdKGh0dHBzOi8vcHJvZC1lZHhhcHAuZWR4LWNkbi5vcmcvYXNzZXRzL2NvdXJzZXdhcmUvdjEvOTY1ZmUwNjMzYWRlMTZhZmUxM2UwMTkwYWI0NWEyMjUvYXNzZXQtdjE6TUlUeCsxNC4zMTB4KzNUMjAxOCt0eXBlQGFzc2V0K2Jsb2NrL25sc3c4OC5jc3YpLiBUaGUgZGF0YSBoYXMgaW5mb3JtYXRpb24gb24gbGFib3IgbWFya2V0IG91dGNvbWVzIG9mIGEgcmVwcmVzZW50YXRpdmUgc2FtcGxlIG9mIHdvbWVuIGluIHRoZSBVUy4gSXQgY29udGFpbnMgdGhlIGZvbGxvd2luZyB2YXJpYWJsZXM6IHRoZSBsb2dhcml0aG0gb2Ygd2FnZSAobHdhZ2UpLCB0b3RhbCB5ZWFycyBvZiBzY2hvb2xpbmcgKHlyc19zY2hvb2wpLCB0b3RhbCBleHBlcmllbmNlIGluIHRoZSBsYWJvciBtYXJrZXRzICh0dGxfZXhwZXJpZW5jZSksIGFuZCBhIGR1bW15IHZhcmlhYmxlIHRoYXQgaW5kaWNhdGVzIHdoZXRoZXIgdGhlIHdvbWFuIGlzIGJsYWNrIG9yIG5vdC4gU2luY2Ugd2UgYXJlIGdvaW5nIHRvIHdvcmsgd2l0aCB0aGlzIGRhdGEgdGhyb3VnaG91dCB0aGlzIGhvbWV3b3JrLCBwbGVhc2UgbG9hZCBpdCBpbnRvIFIgdXNpbmcgdGhlIGNvbW1hbmQgcmVhZC5jc3ZcCgpgYGB7cn0KIkRhdGEgZmlsZSIKZGF0YV91cmwgPC0gImh0dHBzOi8vcHJvZC1lZHhhcHAuZWR4LWNkbi5vcmcvYXNzZXRzL2NvdXJzZXdhcmUvdjEvOTY1ZmUwNjMzYWRlMTZhZmUxM2UwMTkwYWI0NWEyMjUvYXNzZXQtdjE6TUlUeCsxNC4zMTB4KzNUMjAxOCt0eXBlQGFzc2V0K2Jsb2NrL25sc3c4OC5jc3YiCmRhdGFfZmlsZSA8LSAiRGF0YS9ubHN3ODguY3N2IgppZiAoIWZpbGUuZXhpc3RzKGRhdGFfZmlsZSkpIHsKICBkb3dubG9hZC5maWxlKGRhdGFfdXJsLCBkZXN0ZmlsZSA9IGRhdGFfZmlsZSwgbWV0aG9kID0gImF1dG8iKQp9CmRhdGFfZmlsZQoKIkluZm9ybWF0aW9uIG9uIGxhYm9yIG1hcmtldCBvdXRjb21lcyBvZiBhIHJlcHJlc2VudGF0aXZlIHNhbXBsZSBvZiB3b21lbiBpbiB0aGUgVVMiCndvbWVuIDwtIHJlYWQuY3N2KGRhdGFfZmlsZSkKd29tZW4Kc3VtbWFyeSh3b21lbikKYGBgCgpBcyBhIGZpcnN0IHN0ZXAsIHdlIGFyZSBpbnRlcmVzdGVkIGluIGVzdGltYXRpbmcgdGhlIGZvbGxvd2luZyBsaW5lYXIgbW9kZWw6XAokJApsb2cod2FnZV97aX0pID0gXGJldGFfezB9ICsgXGJldGFfezF9IHlyc1xfc2Nob29sX3tpfSArIFx2YXJlcHNpbG9uX3tpfQokJFwKRXN0aW1hdGUgdGhpcyBlcXVhdGlvbiBieSBPTFMgdXNpbmcgdGhlIGNvbW1hbmQgbG0uIFBsZWFzZSBnbyB0byB0aGUgZG9jdW1lbnRhdGlvbiBpbiBSIHRvIHVuZGVyc3RhbmQgdGhlIHN5bnRheCBvZiB0aGUgY29tbWFuZC4gQmFzZWQgb24geW91ciByZXN1bHRzLCBhbnN3ZXIgdGhlIGZvbGxvd2luZyBxdWVzdGlvbnM6XAoKKipRdWVzdGlvbiAxKipcCkFjY29yZGluZyB0byB0aGlzIG1vZGVsLCB3aGF0IGlzIHRoZSBlc3RpbWF0ZSBvZiAkXGJldGFfezF9JD9cClBsZWFzZSByb3VuZCB5b3VyIGFuc3dlciB0byB0aGUgdGhpcmQgZGVjaW1hbCBwb2ludCwgaS5lLiBpZiBpdCBpcyAwLjEyNDk0LCBwbGVhc2Ugcm91bmQgdG8gMC4xMjUgYW5kIGlmIGl0IGlzIDAuMTIzMywgcGxlYXNlIHJvdW5kIHRvIDAuMTIzXApgYGB7cn0KIkxpbmVhciBtb2RlbCBmb3IgbG9nYXJpdGhtIG9mIHdhZ2UgKGx3YWdlKSB3LnIudCB0b3RhbCB5ZWFycyBvZiBzY2hvb2xpbmcgKHlyc19zY2hvb2wpIgpsd2FnZV9zLmxpbmVhciA8LSBsbShsd2FnZSB+IHlyc19zY2hvb2wsIGRhdGEgPSB3b21lbikKc3VtbWFyeShsd2FnZV9zLmxpbmVhcikKYGBgCgoqKlF1ZXN0aW9uIDIqKlwKV2hhdCBpcyB0aGUgJDkwXCUkIGNvbmZpZGVuY2UgaW50ZXJ2YWwgKENJKSBvZiAkXGhhdHtcYmV0YX1fezF9JCBhY2NvcmRpbmcgdG8gdGhpcyBtb2RlbD9cCmEuIEl0IGlzIGdpdmVuIGJ5ICRbMC4wODE3NDk3MiwgIDAuMTA0MDkwMF0kXApiLiBJdCBpcyBnaXZlbiBieSAkWzAuMDg3MzY1NDksIDAuMDk4NDc0MjhdJFwKYy4gSXQgaXMgZ2l2ZW4gYnkgJFswLjA4NDQyMzA4LCAwLjEwMTQxNjddJFwKZC4gSXQgaXMgZ2l2ZW4gYnkgJFswLjA4NTc5MDA1LCAwLjEwMDA0OTddJFwKYGBge3J9CiJDb25maWRlbmNlIGludGVydmFsIG9mIEJldGEgMSBlc3RpbWF0ZSAoYXNzb2NpYXRlZCB3aXRoIHlyc19zY2hvb2wpIgpjb25maW50KGx3YWdlX3MubGluZWFyLCBwYXJtID0gInlyc19zY2hvb2wiLCBsZXZlbCA9IDAuOSkKYGBgCgoqKlF1ZXN0aW9uIDMqKlwKQXNzdW1lIHRoYXQgaW5zdGVhZCBvZiBoYXZpbmcgYWxsIHRoZSBkYXRhLCB5b3UganVzdCBrbm93IHRoYXQgdGhlIGNvdmFyaWFuY2UgYmV0d2VlbiB0aGUgbG9nYXJpdGhtIG9mIHRoZSB3YWdlIGFuZCB0aGUgeWVhcnMgb2Ygc2Nob29saW5nIGlzIDAuNjA0MzI2Ny4gV2hhdCBvdGhlciBpbmZvcm1hdGlvbiB3b3VsZCB5b3UgbmVlZCB0byBiZSBhYmxlIHRvIGZpbmQgJFxoYXR7XGJldGFfezF9fSQ/XAphLiBUaGUgc2FtcGxlIHZhcmlhbmNlIG9mIHRoZSB2YXJpYWJsZSB5cnNfc2Nob29sXApiLiBUaGUgc2FtcGxlIHZhcmlhbmNlIG9mIHRoZSB2YXJpYWJsZSBsd2FnZVwKYy4gVGhlIHNhbXBsZSB2YXJpYW5jZSBvZiB0aGUgZXJyb3IgdGVybVwKZC4gVGhlIHNhbXBsZSBjb3ZhcmlhbmNlIGJldHdlZW4gdGhlIGVycm9yIHRlcm0gYW5kIHlyc19zY2hvb2xcCiQkClxoYXR7XGJldGFfezF9fSA9IFxmcmFje1xmcmFjezF9e259IFxzdW0oIHhfe2l9IC1cb3ZlcmxpbmV7eH0pICggeV97aX0gLVxvdmVybGluZXt5fSl9eyBcZnJhY3sxfXtufSBcc3VtIAogICggeF97aX0gLVxvdmVybGluZXt4fSleezJ9IH0KJCRcCkluIHRoZSBudW1lcmF0b3IgaXMgdGhlIGV4cHJlc3Npb24gZm9yIHRoZSBjb3ZhcmlhbmNlIGJldHdlZW4geCBhbmQgeS5cCkluIHRoZSBkb25pbWluYXRvciBpcyB0aGUgZXhwcmVzc2lvbiBmb3IgdGhlIHZhcmlhbmNlIG9mIHguXAoKKipRdWVzdGlvbiA0KipcCkFmdGVyIHJ1bm5pbmcgeW91ciBjb2RlLCB3aGF0IGlzIHRoZSB2YWx1ZSB5b3UgZm91bmQgZm9yICRcaGF0e1xiZXRhfV97MH0/JFwKUGxlYXNlIHJvdW5kIHlvdXIgYW5zd2VyIHRvIHRoZSB0aGlyZCBkZWNpbWFsIHBvaW50LCBpLmUuIGlmIGl0IGlzIDAuMTI0OTQsIHBsZWFzZSByb3VuZCB0byAwLjEyNSBhbmQgaWYgaXQgaXMgMC4xMjMzLCBwbGVhc2Ugcm91bmQgdG8gMC4xMjNcCmBgYHtyfQpsd2FnZV9zLmxpbmVhciRjb2VmZmljaWVudHMKYGBgCgoqKlF1ZXN0aW9uIDUqKlwKVHJ1ZSBvciBGYWxzZTogRm9yIGFueSBzaW1wbGUgYml2YXJpYXRlIGxpbmVhciByZWdyZXNzaW9uIG1vZGVsLCB0aGUgcHJlZGljdGVkIHZhbHVlIHdoZW4gJHggPSBcb3ZlcmxpbmV7eH0kIGlzICRcb3ZlcmxpbmV7eX0kXAphLiBUcnVlXApiLiBGYWxzZVwKYGBge3J9CiJUcnVlIgpgYGAKCioqUXVlc3Rpb24gNioqXApBZnRlciBydW5uaW5nIHlvdXIgbW9kZWwsIHVzZSB0aGUgY29tbWFuZCByZXNpZHVhbHMgdG8gY2FsY3VsYXRlIHRoZSByZXNpZHVhbHMgb2YgdGhlIHJlZ3Jlc3Npb24uIENhbGN1bGF0ZSB0aGUgc3VtIG9mIHRoZSByZXNpZHVhbHMuIFNob3VsZCB3ZSBiZSBzdXJwcmlzZWQgdGhhdCB0aGUgc3VtIGlzIHNvIGNsb3NlIHRvIHplcm8/XAphLiBZZXNcCmIuIE5vXApgYGB7cn0KIlJlc2lkdWFscyIKc3RyKGx3YWdlX3MubGluZWFyJHJlc2lkdWFscykKCiJTdW0gb2YgcmVzaWR1YWxzIgpzdW0obHdhZ2Vfcy5saW5lYXIkcmVzaWR1YWxzKQpgYGAKCk5vdywgd2UgYXJlIGludGVyZXN0ZWQgaW4gZXN0aW1hdGluZyB0aGUgZm9sbG93aW5nIG1vZGVsOlwKJCQKXGxvZyh3YWdlX3tpfSkgPSBcYmV0YV97MH0gKyBcYmV0YV97MX0gYmxhY2sgKyBcdmFyZXBzaWxvbl97aX0KJCRcCgoqKlF1ZXN0aW9uIDcqKlwKUmVzZWFyY2hlciBBIHNheXMgdGhhdCB0aGlzIG1vZGVsIGlzIG5vdCBjb3JyZWN0bHkgc3BlY2lmaWVkLiBSZXNlYXJjaGVyIEEgc3VnZ2VzdHMgdGhhdCB0aGUgY29ycmVjdCBtb2RlbCBzaG91bGQgZXN0aW1hdGUgdGhlIGZvbGxvd2luZyBlcXVhdGlvbiAod2hlcmUgJG90aGVyIFw7IHJhY2UkIGlzIGEgZHVtbXkgdmFyaWFibGUgZXF1YWwgdG8gMSB3aGVuIHRoZSBwZXJzb24gaXMgbm90IGJsYWNrKTpcCiQkCmxvZyh3YWdlX3tpfSkgPSBcYmV0YV97MH0gKyBcYmV0YV97MX0gYmxhY2sgKyBcYmV0YV97Mn0gb3RoZXIgXDsgIHJhY2UgKyBcdmFyZXBzaWxvbl97aX0KJCRcClJlc2VhcmNoZXIgQiBjbGFpbXMgdGhhdCBSZXNlYXJjaGVyIEEgaXMgd3JvbmcsIGFuZCB0aGF0IGluIHRoaXMgc2Vjb25kIG1vZGVsLCBpdCBpcyBub3QgcG9zc2libGUgdG8gc2VwYXJhdGVseSBpZGVudGlmeSAkXGJldGFfezB9LFw7IFxiZXRhX3sxfSxcOyBcdGV4dHthbmQgfSBcYmV0YV97Mn0uJCBXaG8gZG8geW91IGFncmVlIHdpdGg/XAphLiBSZXNlYXJjaGVyIEFcCmIuIFJlc2VhcmNoZXIgQlwKYGBge3J9CiJSZXNlYXJjaGVyIEIiCmBgYAoKKipRdWVzdGlvbiA4KipcCkFzc3VtZSB0aGF0IHlvdSBkb24ndCBoYXZlIGFsbCB0aGUgZGF0YS4gSG93ZXZlciwgeW91IGtub3cgdGhhdCB0aGUgc2FtcGxlIG1lYW4gb2YgdGhlIGxvZyB3YWdlIGZvciB3b21lbiB3aG8gYXJlIG5vdCBibGFjayBpcyAkXG92ZXJsaW5le3l9X3tvdGhlcn0kLCBhbmQgdGhlIHNhbXBsZSBtZWFuIG9mIHRoZSBsb2cgd2FnZSBmb3IgYmxhY2sgd29tZW4gaXMgJFxvdmVybGluZXt5fV97YmxhY2t9LiQgV2hhdCBhcmUgdGhlIHZhbHVlcyBvZiAkXGhhdHtcYmV0YX1fezB9JCBhbmQgJFxoYXR7XGJldGF9X3sxfSQgaWYgd2UgcnVuIHRoaXMgbW9kZWwgdXNpbmcgT0xTP1wKYS4gV2UgaGF2ZSB0aGF0ICRcaGF0e1xiZXRhfV97MH09XG92ZXJsaW5le3l9X3tibGFja30kIGFuZCAkXGhhdHtcYmV0YX1fezF9PVxvdmVybGluZXt5fV97b3RoZXJ9LVxvdmVybGluZXt5fV97b3RoZXJ9JFwKYi4gV2UgaGF2ZSB0aGF0ICRcaGF0e1xiZXRhfV97MH09XG92ZXJsaW5le3l9X3tibGFja30kIGFuZCAkXGhhdHtcYmV0YX1fezF9PVxvdmVybGluZXt5fV97YmxhY2t9LVxvdmVybGluZXt5fV97b3RoZXJ9JFwKYy5XZSBoYXZlIHRoYXQgJFxoYXR7XGJldGF9X3swfT1cb3ZlcmxpbmV7eX1fe290aGVyfSQgYW5kICRcaGF0e1xiZXRhfV97MX09XG92ZXJsaW5le3l9X3tibGFja30tXG92ZXJsaW5le3l9X3tvdGhlcn0kXApkLiBXZSBoYXZlIHRoYXQgJFxoYXR7XGJldGF9X3swfT1cb3ZlcmxpbmV7eX1fe290aGVyfSQgYW5kICRcaGF0e1xiZXRhfV97MX09XG92ZXJsaW5le3l9X3tvdGhlcn0tXG92ZXJsaW5le3l9X3tvdGhlcn0kXApgYGB7cn0KImMiCmBgYAoKKipRdWVzdGlvbiA5KipcCk5vdywgZXN0aW1hdGUgdGhpcyBtb2RlbCBieSB5b3Vyc2VsZiB1c2luZyBib3RoIHRoZSBzYW1wbGUgbWVhbnMgYXBwcm9hY2ggYW5kIHRoZSByZWdyZXNzaW9uIGFwcHJvYWNoIHdpdGggdGhlIGNvbW1hbmQgbG0uIChZb3Ugc2hvdWxkIGdldCB0aGUgc2FtZSByZXN1bHRzISlcCkZvciB0aGUgZm9sbG93aW5nIGFuc3dlcnMsIHBsZWFzZSByb3VuZCB0byB0aGUgdGhpcmQgZGVjaW1hbCBwbGFjZSwgaS5lLiBpZiB0aGUgc29sdXRpb24gaXMgMC4yMzQxMiwgcGxlYXNlIHJvdW5kIHRvIDAuMjM0LCBhbmQgaWYgaXQgaXMgMC4yMzQ5OCwgcGxlYXNlIHJvdW5kIHRvIDAuMjM1LlwKV2hhdCB2YWx1ZSBkaWQgeW91IGZpbmQgZm9yICRcaGF0e1xiZXRhfV97MH0kP1wKYGBge3J9CiJMaW5lYXIgbW9kZWwgZm9yIGxvZ2FyaXRobSBvZiB3YWdlIChsd2FnZSkgdy5yLnQgcmFjZSAoYmxhY2spIgpsd2FnZV9iLmxpbmVhciA8LSBsbShsd2FnZSB+IGJsYWNrLCBkYXRhID0gd29tZW4pCnN1bW1hcnlfbHdhZ2VfYiA8LSBzdW1tYXJ5KGx3YWdlX2IubGluZWFyKQpzdW1tYXJ5X2x3YWdlX2IKCiJNZWFucyBvZiBsb2dhcml0aG0gb2Ygd2FnZSAobHdhZ2UpIGJ5IHJhY2UgKGJsYWNrKSIKbHdhZ2VfbWVhbnNfYiA8LSBkZHBseSh3b21lbiwgLnZhcmlhYmxlcyA9IC4oYmxhY2spLCAuZnVuID0gc3VtbWFyaXNlLCBsd2FnZV9tZWFuID0gbWVhbihsd2FnZSkpCmx3YWdlX21lYW5zX2IKCiJDb2VmZmljaWVudCBCZXRhIDAgKHVzaW5nIHJlZ3Jlc3Npb24gYXBwcm9hY2gpIgpsd2FnZV9iLmxpbmVhciRjb2VmZmljaWVudHNbIihJbnRlcmNlcHQpIl0KCiJDb2VmZmljaWVudCBCZXRhIDAgKHVzaW5nIHNhbXBsZSBtZWFucyBhcHByb2FjaCkiCmZpbHRlcihsd2FnZV9tZWFuc19iLCBibGFjayA9PSAwKSRsd2FnZV9tZWFuCmBgYApXaGF0IHZhbHVlIGRpZCB5b3UgZmluZCBmb3IgJFxoYXR7XGJldGF9X3sxfSQ/XApgYGB7cn0KIkNvZWZmaWNpZW50IEJldGEgMSAob24gYmxhY2spICh1c2luZyByZWdyZXNzaW9uIGFwcHJvYWNoKSIKbHdhZ2VfYi5saW5lYXIkY29lZmZpY2llbnRzWyJibGFjayJdCgoiQ29lZmZpY2llbnQgQmV0YSAxIChvbiBibGFjaykgKHVzaW5nIHNhbXBsZSBtZWFucyBhcHByb2FjaCkiCmZpbHRlcihsd2FnZV9tZWFuc19iLCBibGFjayA9PSAxKSRsd2FnZV9tZWFuIC0gZmlsdGVyKGx3YWdlX21lYW5zX2IsIGJsYWNrID09IDApJGx3YWdlX21lYW4KYGBgCgoqKlF1ZXN0aW9uIDEwKipcCkEgY3JpdGljIGlzIGNsYWltaW5nIHRoYXQgdGhpcyBkb2Vzbid0IHByb3ZlIHRoYXQgdGhlcmUgYXJlIGRpZmZlcmVuY2VzIGluIHRoZSB3YWdlIG9mIGJsYWNrIHdvbWVuIGFuZCB3b21lbiBvZiBvdGhlciByYWNlcy4gWW91IGRlY2lkZSB0byBjb25kdWN0IGEgdGVzdCBvbiB0aGUgcGFyYW1ldGVyICRcYmV0YV97MX0sJCB3aGVyZSB0aGUgbnVsbCBoeXBvdGhlc2lzIGlzICRcYmV0YV97MX0gPTAuJCBXaGF0IGlzIHRoZSB2YWx1ZSBvZiB0aGUgc3RhdGlzdGljIG9mIHRoaXMgdGVzdD9cClBsZWFzZSByb3VuZCB0byB0aGUgdGhpcmQgZGVjaW1hbCBwbGFjZSwgaS5lLiBpZiB0aGUgc29sdXRpb24gaXMgMC4yMzQxMiwgcGxlYXNlIHJvdW5kIHRvIDAuMjM0LCBhbmQgaWYgaXQgaXMgMC4yMzQ5OCwgcGxlYXNlIHJvdW5kIHRvIDAuMjM1LlwKYGBge3J9CgpzdW1tYXJ5X2x3YWdlX2IgPC0gc3VtbWFyeShsd2FnZV9iLmxpbmVhcikKc3VtbWFyeV9sd2FnZV9iJGNvZWZmaWNpZW50c1ssICJ0IHZhbHVlIl0KY2xhc3Moc3VtbWFyeShsd2FnZV9iLmxpbmVhcilbImNvZWZmaWNpZW50cyJdKQoKbHdhZ2VfYi5saW5lYXIkY29lZmZpY2llbnRzCmx3YWdlX2IubGluZWFyCmBgYAoKCgoKCgoKCgoKCgoKCgoKCgo=</div>
 
 
 

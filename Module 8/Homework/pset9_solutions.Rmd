@@ -2,21 +2,21 @@
 title: "14.310x: Data Analysis for Social Scientists - Homework 9"
 output: html_notebook
 ---
-
-
+\
+\
 Welcome to your ninth homework assignment! You will have about one week to work through the
 assignment. We have provided this PDF copy of the assignment so that you can print and work through
 the assignment offline. You can also go online directly to complete the assignment. If you choose to work
 on the assignment using this PDF, please go back to the online platform to submit your answers based
-on the output produced.
-Good luck :)!
+on the output produced.\
+Good luck :)!\
 
 ```{r}
 # Preliminaries
 rm(list = ls())
 ```
 
-For the following questions, you will need the data set: [nlsw88.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/965fe0633ade16afe13e0190ab45a225/asset-v1:MITx+14.310x+3T2018+type@asset+block/nlsw88.csv). The data has information on labor market outcomes of a representative sample of women in the US. It contains the following variables: the logarithm of wage (lwage), total years of schooling (yrs_school), total experience in the labor markets (ttl_experience), and a dummy variable that indicates whether the woman is black or not. Since we are going to work with this data throughout this homework, please load it into R using the command read.csv
+For the following questions, you will need the data set: [nlsw88.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/965fe0633ade16afe13e0190ab45a225/asset-v1:MITx+14.310x+3T2018+type@asset+block/nlsw88.csv). The data has information on labor market outcomes of a representative sample of women in the US. It contains the following variables: the logarithm of wage (lwage), total years of schooling (yrs_school), total experience in the labor markets (ttl_experience), and a dummy variable that indicates whether the woman is black or not. Since we are going to work with this data throughout this homework, please load it into R using the command read.csv\
 
 ```{r}
 "Data file"
@@ -33,59 +33,152 @@ women
 summary(women)
 ```
 
-As a first step, we are interested in estimating the following linear model:
+As a first step, we are interested in estimating the following linear model:\
 $$
 log(wage_{i}) = \beta_{0} + \beta_{1} yrs\_school_{i} + \varepsilon_{i}
-$$
-Estimate this equation by OLS using the command lm. Please go to the documentation in R to understand the syntax of the command. Based on your results, answer the following questions:
+$$\
+Estimate this equation by OLS using the command lm. Please go to the documentation in R to understand the syntax of the command. Based on your results, answer the following questions:\
 
-**Question 1**
-According to this model, what is the estimate of $$\beta_{1}$$?
-Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123
+**Question 1**\
+According to this model, what is the estimate of $\beta_{1}$?\
+Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123\
 ```{r}
-"Regress logarithm of wage (lwage) from total years of schooling (yrs_school)"
+"Linear model for logarithm of wage (lwage) w.r.t total years of schooling (yrs_school)"
 lwage_s.linear <- lm(lwage ~ yrs_school, data = women)
-lwage_s.linear
 summary(lwage_s.linear)
 ```
 
-**Question 2**
-What is the $$90\%$$ confidence interval (CI) of $$\hat{\beta}_{1}$$ according to this model?
-a. It is given by $$[0.08174972,  0.1040900]$$
-b. It is given by $$[0.08736549, 0.09847428]$$
-c. It is given by $$[0.08442308, 0.1014167]$$
-d. It is given by $$[0.08579005, 0.1000497]$$
+**Question 2**\
+What is the $90\%$ confidence interval (CI) of $\hat{\beta}_{1}$ according to this model?\
+a. It is given by $[0.08174972,  0.1040900]$\
+b. It is given by $[0.08736549, 0.09847428]$\
+c. It is given by $[0.08442308, 0.1014167]$\
+d. It is given by $[0.08579005, 0.1000497]$\
 ```{r}
 "Confidence interval of Beta 1 estimate (associated with yrs_school)"
 confint(lwage_s.linear, parm = "yrs_school", level = 0.9)
 ```
 
-**Question 3**
-Assume that instead of having all the data, you just know that the covariance between the logarithm of the wage and the years of schooling is 0.6043267. What other information would you need to be able to find $$\hat{\beta_{1}}$$?
-a. The sample variance of the variable yrs_school
-b. The sample variance of the variable lwage
-c. The sample variance of the error term
-d. The sample covariance between the error term and yrs_school
-```{r}
+**Question 3**\
+Assume that instead of having all the data, you just know that the covariance between the logarithm of the wage and the years of schooling is 0.6043267. What other information would you need to be able to find $\hat{\beta_{1}}$?\
+a. The sample variance of the variable yrs_school\
+b. The sample variance of the variable lwage\
+c. The sample variance of the error term\
+d. The sample covariance between the error term and yrs_school\
+$$
+\hat{\beta_{1}} = \frac{\frac{1}{n} \sum( x_{i} -\overline{x}) ( y_{i} -\overline{y})}{ \frac{1}{n} \sum 
+  ( x_{i} -\overline{x})^{2} }
+$$\
+In the numerator is the expression for the covariance between x and y.\
+In the doniminator is the expression for the variance of x.\
 
-```
-
-**Question 4**
-After running your code, what is the value you found for $$\hat{\beta}_{0}?$$
-Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123
+**Question 4**\
+After running your code, what is the value you found for $\hat{\beta}_{0}?$\
+Please round your answer to the third decimal point, i.e. if it is 0.12494, please round to 0.125 and if it is 0.1233, please round to 0.123\
 ```{r}
 lwage_s.linear$coefficients
 ```
 
-**Question 5**
-True or False: For any simple bivariate linear regression model, the predicted value when $$x = \overline{x}$$ is $$\overline{y}$$
-a. True
-b. False
+**Question 5**\
+True or False: For any simple bivariate linear regression model, the predicted value when $x = \overline{x}$ is $\overline{y}$\
+a. True\
+b. False\
+```{r}
+"True"
+```
 
-**Question 6**
-After running your model, use the command residuals to calculate the residuals of the regression. Calculate the sum of the residuals. Should we be surprised that the sum is so close to zero?
-a. Yes
-b. No
+**Question 6**\
+After running your model, use the command residuals to calculate the residuals of the regression. Calculate the sum of the residuals. Should we be surprised that the sum is so close to zero?\
+a. Yes\
+b. No\
+```{r}
+"Residuals"
+str(lwage_s.linear$residuals)
+
+"Sum of residuals"
+sum(lwage_s.linear$residuals)
+```
+
+Now, we are interested in estimating the following model:\
+$$
+\log(wage_{i}) = \beta_{0} + \beta_{1} black + \varepsilon_{i}
+$$\
+
+**Question 7**\
+Researcher A says that this model is not correctly specified. Researcher A suggests that the correct model should estimate the following equation (where $other \; race$ is a dummy variable equal to 1 when the person is not black):\
+$$
+log(wage_{i}) = \beta_{0} + \beta_{1} black + \beta_{2} other \;  race + \varepsilon_{i}
+$$\
+Researcher B claims that Researcher A is wrong, and that in this second model, it is not possible to separately identify $\beta_{0},\; \beta_{1},\; \text{and } \beta_{2}.$ Who do you agree with?\
+a. Researcher A\
+b. Researcher B\
+```{r}
+"Researcher B"
+```
+
+**Question 8**\
+Assume that you don't have all the data. However, you know that the sample mean of the log wage for women who are not black is $\overline{y}_{other}$, and the sample mean of the log wage for black women is $\overline{y}_{black}.$ What are the values of $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ if we run this model using OLS?\
+a. We have that $\hat{\beta}_{0}=\overline{y}_{black}$ and $\hat{\beta}_{1}=\overline{y}_{other}-\overline{y}_{other}$\
+b. We have that $\hat{\beta}_{0}=\overline{y}_{black}$ and $\hat{\beta}_{1}=\overline{y}_{black}-\overline{y}_{other}$\
+c.We have that $\hat{\beta}_{0}=\overline{y}_{other}$ and $\hat{\beta}_{1}=\overline{y}_{black}-\overline{y}_{other}$\
+d. We have that $\hat{\beta}_{0}=\overline{y}_{other}$ and $\hat{\beta}_{1}=\overline{y}_{other}-\overline{y}_{other}$\
+```{r}
+"c"
+```
+
+**Question 9**\
+Now, estimate this model by yourself using both the sample means approach and the regression approach with the command lm. (You should get the same results!)\
+For the following answers, please round to the third decimal place, i.e. if the solution is 0.23412, please round to 0.234, and if it is 0.23498, please round to 0.235.\
+What value did you find for $\hat{\beta}_{0}$?\
+```{r}
+"Linear model for logarithm of wage (lwage) w.r.t race (black)"
+lwage_b.linear <- lm(lwage ~ black, data = women)
+summary_lwage_b <- summary(lwage_b.linear)
+summary_lwage_b
+
+"Means of logarithm of wage (lwage) by race (black)"
+lwage_means_b <- ddply(women, .variables = .(black), .fun = summarise, lwage_mean = mean(lwage))
+lwage_means_b
+
+"Coefficient Beta 0 (using regression approach)"
+lwage_b.linear$coefficients["(Intercept)"]
+
+"Coefficient Beta 0 (using sample means approach)"
+filter(lwage_means_b, black == 0)$lwage_mean
+```
+What value did you find for $\hat{\beta}_{1}$?\
+```{r}
+"Coefficient Beta 1 (on black) (using regression approach)"
+lwage_b.linear$coefficients["black"]
+
+"Coefficient Beta 1 (on black) (using sample means approach)"
+filter(lwage_means_b, black == 1)$lwage_mean - filter(lwage_means_b, black == 0)$lwage_mean
+```
+
+**Question 10**\
+A critic is claiming that this doesn't prove that there are differences in the wage of black women and women of other races. You decide to conduct a test on the parameter $\beta_{1},$ where the null hypothesis is $\beta_{1} =0.$ What is the value of the statistic of this test?\
+Please round to the third decimal place, i.e. if the solution is 0.23412, please round to 0.234, and if it is 0.23498, please round to 0.235.\
+```{r}
+
+summary_lwage_b <- summary(lwage_b.linear)
+summary_lwage_b$coefficients[, "t value"]
+class(summary(lwage_b.linear)["coefficients"])
+
+lwage_b.linear$coefficients
+lwage_b.linear
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

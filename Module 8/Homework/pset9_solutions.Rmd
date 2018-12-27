@@ -213,12 +213,36 @@ b. The null hypothesis of this test is: $\beta_{1} =  \beta_{2} + \beta_{1}$\
 c. The null hypothesis of this test is: $\beta_{1} + \beta_{2} =  \beta_{2}$\
 d. The null hypothesis of this test is: $2 \beta_{1} =  \beta_{2}$\
 ```{r}
-
+"d"
+"Null hypothesis:"
+"(Beta 1) * (1 additional yrs_school) = (Beta 2) * (0.5 additional ttl_exp)"
+"(Beta 1) * (2 additional yrs_school) = (Beta 2) * (1 additional ttl_exp)"
+"2(Beta 1) = (Beta 2)"
 ```
 
+**Question 14**\
+Which of the following would correspond to the restricted model under this null hypothesis? (Select all that apply)\
+a. The model $log(wage_{i}) = \beta_{0} +   \beta_{2} (  yrs\_school_{i}  + 2 total \; experience_{i} ) + \varepsilon_{i}$\
+b. The model $log(wage_{i}) = \beta_{0} +   \beta_{1} ( \frac{1}{2} yrs\_school_{i} +  total \; experience_{i} ) + \varepsilon_{i}$\
+c. The model $log(wage_{i}) = \beta_{0} +   \beta_{1} (   yrs\_school_{i}  + 2 total \; experience_{i} ) + \varepsilon_{i}$\
+d. The model $log(wage_{i}) = \beta_{0} + (  \beta_{1} + 2\beta_{2} ) yrs\_school_{i}  + \varepsilon_{i}$\
+e. The model $log(wage_{i}) = \beta_{0} + (   2 \beta_{1} + \beta_{2} ) yrs\_school_{i}   + \varepsilon_{i}$\
+f. The model $log(wage_{i}) = \beta_{0} +   \beta_{2} \left( \frac{1}{2} yrs\_school_{i} +  total \; experience_{i} \right) + \varepsilon_{i}$\
+```{r}
+"c, f"
+"Possible restricted models can be obtained by plugging null hypothesis (2(Beta 1) = (Beta 2)) into original model"
+```
 
-
-
+**Question 15**\
+Estimate the restricted model in R. What is the value that you obtain for $\hat{\beta}_{1}$ in the restricted model? For the restricted model, use the first correct model in the list from question 14, i.e. if both (a) and (d) are correct, use (a) or if both (b) and (c) are correct, use (b).\
+Please round your answer to the fourth decimal place, i.e. if your answer is 0.78244, please round to 0.7824, and if it is 0.78247, please round to 0.7825.\
+```{r}
+"Data for restricted model under null 2(Beta 1) = (Beta 2)"
+women_restricted <- read.csv(data_file)
+women
+summary(women)
+women_
+```
 
 
 

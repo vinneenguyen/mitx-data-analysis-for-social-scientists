@@ -242,11 +242,13 @@ log(wage_{i}) = \beta_{0} +   \beta_{1} (   yrs\_school_{i}  + 2 total \; experi
 $$\
 ```{r}
 "Data for restricted model under null '2(Beta 1) = (Beta 2)' (calculated values of (total years of schooling + 2 * total experience in the labor markets))"
-women$s_add_2e <- women$yrs_school + women$ttl_exp
+women$"school + 2exp" <- women$yrs_school + women$ttl_exp
 women
 summary(women)
 
-lwage_.linear <- lm(lwage ~ yrs_school, data = women)
+lwage_sAdd2e.linear <- lm(lwage ~ "school + 2exp", data = women)
+lwage_sAdd2e.summary <- summary(lwage_sAdd2e.linear)
+lwage_sAdd2e.summary
 ```
 
 

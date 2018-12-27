@@ -196,12 +196,12 @@ If you run this model in R, what would be the value of the $R^{2}$?\
 Please round your answer to the third decimal place, i.e. if your answer is 0.7283, please round to 0.728 and if it is 0.7289, round to 0.729.\
 ```{r}
 "Linear model for logarithm of wage (lwage) w.r.t total years of schooling (yrs_school), total experience in the labor markets (ttl_exp)"
-lwage_se.linear <- lm(lwage ~ yrs_school + ttl_exp, data = women)
-summary_lwage_se <- summary(lwage_se.linear)
-summary_lwage_se
+lwage_s_e.linear <- lm(lwage ~ yrs_school + ttl_exp, data = women)
+summary_lwage_s_e <- summary(lwage_se.linear)
+summary_lwage_s_e
 
 "R-squared"
-summary_lwage_se$r.squared
+summary_lwage_s_e$r.squared
 ```
 
 Some young folks are claiming that they prefer to drop out from school since each additional year of schooling changes the log of the wage in the same amount as one half year of experience. A group of parents are really worried. They ask you to conduct a formal test over this sample.\
@@ -230,18 +230,23 @@ e. The model $log(wage_{i}) = \beta_{0} + (   2 \beta_{1} + \beta_{2} ) yrs\_sch
 f. The model $log(wage_{i}) = \beta_{0} +   \beta_{2} \left( \frac{1}{2} yrs\_school_{i} +  total \; experience_{i} \right) + \varepsilon_{i}$\
 ```{r}
 "c, f"
-"Possible restricted models can be obtained by plugging null hypothesis (2(Beta 1) = (Beta 2)) into original model"
+"Possible restricted models, under null '2(Beta 1) = (Beta 2)', can be obtained by plugging null hypothesis (2(Beta 1) = (Beta 2)) into original model"
 ```
 
 **Question 15**\
 Estimate the restricted model in R. What is the value that you obtain for $\hat{\beta}_{1}$ in the restricted model? For the restricted model, use the first correct model in the list from question 14, i.e. if both (a) and (d) are correct, use (a) or if both (b) and (c) are correct, use (b).\
 Please round your answer to the fourth decimal place, i.e. if your answer is 0.78244, please round to 0.7824, and if it is 0.78247, please round to 0.7825.\
+Restricted model under null $2 \beta_{1} =  \beta_{2}$:\
+$$
+log(wage_{i}) = \beta_{0} +   \beta_{1} (   yrs\_school_{i}  + 2 total \; experience_{i} ) + \varepsilon_{i}
+$$\
 ```{r}
-"Data for restricted model under null 2(Beta 1) = (Beta 2)"
-women_restricted <- read.csv(data_file)
+"Data for restricted model under null '2(Beta 1) = (Beta 2)' (calculated values of (total years of schooling + 2 * total experience in the labor markets))"
+women$s_add_2e <- women$yrs_school + women$ttl_exp
 women
 summary(women)
-women_
+
+lwage_.linear <- lm(lwage ~ yrs_school, data = women)
 ```
 
 

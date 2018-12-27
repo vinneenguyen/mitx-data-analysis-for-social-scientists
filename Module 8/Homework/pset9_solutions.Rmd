@@ -166,10 +166,55 @@ summary_lwage_b$coefficients
 summary_lwage_b$coefficients["black", "t value"]
 ```
 
+**Question 11**\
+Would you reject this null hypothesis using a $99\%$ level of confidence?\
+a. Yes\
+b. No\
+```{r}
+"All coefficients (matrix)"
+summary_lwage_b$coefficients
 
+"Significance level of sample under null 'Beta 1 (on black) = 0' (Probability of observing t > |t-statistic|)"
+signif_level_obs <- summary_lwage_b$coefficients["black", "Pr(>|t|)"]
+signif_level_obs
 
+"Significance level required by 99% confidence level"
+signif_level_req <- 1 - 0.99
+signif_level_req
 
+"Probability that observation on sample is due to chance, under null 'Beta 1 (on black) = 0', is low (<= required)?"
+signif_level_obs <= signif_level_req
+```
 
+Labor economists have estimated Mincer equations that include not only total years of schooling, but also total experience as explanatory variables of the wage. Assume now that you want to estimate the following model:\
+$$
+log(wage_{i}) = \beta_{0} + \beta_{1} yrs\_school_{i} + \beta_{2} total \; experience + \varepsilon_{i}
+$$\
+
+**Question 12**\
+If you run this model in R, what would be the value of the $R^{2}$?\
+Please round your answer to the third decimal place, i.e. if your answer is 0.7283, please round to 0.728 and if it is 0.7289, round to 0.729.\
+```{r}
+"Linear model for logarithm of wage (lwage) w.r.t total years of schooling (yrs_school), total experience in the labor markets (ttl_exp)"
+lwage_se.linear <- lm(lwage ~ yrs_school + ttl_exp, data = women)
+summary_lwage_se <- summary(lwage_se.linear)
+summary_lwage_se
+
+"R-squared"
+summary_lwage_se$r.squared
+```
+
+Some young folks are claiming that they prefer to drop out from school since each additional year of schooling changes the log of the wage in the same amount as one half year of experience. A group of parents are really worried. They ask you to conduct a formal test over this sample.\
+
+**Question 13**\
+What would be the null hypothesis of this test?\
+a. The null hypothesis of this test is: $\beta_{1} = 2 \beta_{2}$\
+b. The null hypothesis of this test is: $\beta_{1} =  \beta_{2} + \beta_{1}$\
+c. The null hypothesis of this test is: $\beta_{1} + \beta_{2} =  \beta_{2}$\
+d. The null hypothesis of this test is: $2 \beta_{1} =  \beta_{2}$\
+```{r}
+
+```
 
 
 

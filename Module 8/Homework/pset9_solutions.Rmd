@@ -276,9 +276,19 @@ f_stat <- ((SSR_rest-SSR_unrest) / num_rest) / (SSR_unrest/df_unrest)
 f_stat
 ```
 
+**Question 17**\
+Do you reject or not reject this null hypothesis at a confidence level of 95%?\
+a. Reject\
+b. Do not reject\
+```{r}
+"Significance level observed under null '2(Beta 1) = (Beta 2)' (Probability of observing F > F-test statistic; F-statistic always non-negative)"
+signif_level_obs <- pf(f_stat, df1 = num_rest, df2 = df_unrest, tail.lower = FALSE)
+signif_level_obs
 
+"Significance level required by 95% confidence level"
+signif_level_req <- 1 - 0.95
+signif_level_req
 
-
-
-
-
+"Probability of observing F's more extreme than F-test statistic, under null '2(Beta 1) = (Beta 2)', is insignificant (<= required)?"
+signif_level_obs <= signif_level_req
+```

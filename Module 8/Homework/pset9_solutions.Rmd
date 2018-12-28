@@ -133,8 +133,8 @@ What value did you find for $\hat{\beta}_{0}$?\
 ```{r}
 "Linear model for logarithm of wage (lwage) w.r.t race (black)"
 lwage_b.linear <- lm(lwage ~ black, data = women)
-summary_lwage_b <- summary(lwage_b.linear)
-summary_lwage_b
+lwage_b.summary <- summary(lwage_b.linear)
+lwage_b.summary
 
 "Means of logarithm of wage (lwage) by race (black)"
 lwage_means_b <- ddply(women, .variables = .(black), .fun = summarise, lwage_mean = mean(lwage))
@@ -160,10 +160,10 @@ A critic is claiming that this doesn't prove that there are differences in the w
 Please round to the third decimal place, i.e. if the solution is 0.23412, please round to 0.234, and if it is 0.23498, please round to 0.235.\
 ```{r}
 "All coefficients (matrix)"
-summary_lwage_b$coefficients
+lwage_b.summary$coefficients
 
 "t-statistic of sample under null 'Beta 1 (on black) = 0'"
-summary_lwage_b$coefficients["black", "t value"]
+lwage_b.summary$coefficients["black", "t value"]
 ```
 
 **Question 11**\
@@ -172,10 +172,10 @@ a. Yes\
 b. No\
 ```{r}
 "All coefficients (matrix)"
-summary_lwage_b$coefficients
+lwage_b.summary$coefficients
 
 "Significance level of sample under null 'Beta 1 (on black) = 0' (Probability of observing t > |t-statistic|)"
-signif_level_obs <- summary_lwage_b$coefficients["black", "Pr(>|t|)"]
+signif_level_obs <- lwage_b.summary$coefficients["black", "Pr(>|t|)"]
 signif_level_obs
 
 "Significance level required by 99% confidence level"
@@ -197,11 +197,11 @@ Please round your answer to the third decimal place, i.e. if your answer is 0.72
 ```{r}
 "Linear model for logarithm of wage (lwage) w.r.t total years of schooling (yrs_school), total experience in the labor markets (ttl_exp)"
 lwage_s_e.linear <- lm(lwage ~ yrs_school + ttl_exp, data = women)
-summary_lwage_s_e <- summary(lwage_se.linear)
-summary_lwage_s_e
+lwage_s_e.summary <- summary(lwage_s_e.linear)
+lwage_s_e.summary
 
 "R-squared"
-summary_lwage_s_e$r.squared
+lwage_s_e.summary$r.squared
 ```
 
 Some young folks are claiming that they prefer to drop out from school since each additional year of schooling changes the log of the wage in the same amount as one half year of experience. A group of parents are really worried. They ask you to conduct a formal test over this sample.\
@@ -242,16 +242,39 @@ log(wage_{i}) = \beta_{0} +   \beta_{1} (   yrs\_school_{i}  + 2 total \; experi
 $$\
 ```{r}
 "Data for restricted model under null '2(Beta 1) = (Beta 2)' (calculated values of (total years of schooling + 2 * total experience in the labor markets))"
-women$"school + 2exp" <- women$yrs_school + women$ttl_exp
+women$school_add_2exp <- women$yrs_school + 2*women$ttl_exp
 women
 summary(women)
 
-lwage_sAdd2e.linear <- lm(lwage ~ "school + 2exp", data = women)
+"Linear model for logarithm of wage (lwage) w.r.t (total years of schooling + 2 * total experience in the labor markets) (school_add_2exp)"
+lwage_sAdd2e.linear <- lm(lwage ~ school_add_2exp, data = women)
 lwage_sAdd2e.summary <- summary(lwage_sAdd2e.linear)
 lwage_sAdd2e.summary
+
+"Coefficient Beta 1 (on school_add_2exp)"
+lwage_sAdd2e.linear$coefficients["school_add_2exp"]
 ```
 
+**Question 16**\
+Use the anova command in R to calculate the test $\frac{SSR_{r}-SSR_{u}}{r} / \frac{SSR_{u}}{N-K-1}$, what is the value of the test?\
+Please round your answer to the second decimal places, i.e. if your answer is 89.28397, please round to 89.28 and if it is 89.28997, round to 89.29\
+```{r}
+"Analysis of variance table for free model"
+lwage_s_e.anova <- anova(lwage_s_e.linear)
+lwage_s_e.anova
 
+"Analysis of variance table for restricted model under null '2(Beta 1) = (Beta 2)"
+lwage_sAdd2e.anova <- anova(lwage_sAdd2e.linear)
+lwage_sAdd2e.anova
+
+"F-test statistic under null '2(Beta 1) = (Beta 2)"
+SSR_rest <- lwage_sAdd2e.anova["Residuals", "Sum Sq"]
+SSR_unrest <- lwage_s_e.anova["Residuals", "Sum Sq"]
+num_rest <- 1
+df_unrest <- lwage_s_e.anova["Residuals", "Df"]
+f_stat <- ((SSR_rest-SSR_unrest) / num_rest) / (SSR_unrest/df_unrest)
+f_stat
+```
 
 
 

@@ -14,6 +14,7 @@ Good luck :)!\
 ```{r}
 # Preliminaries
 rm(list = ls())
+library(car)
 ```
 
 For the following questions, you will need the data set: [nlsw88.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/965fe0633ade16afe13e0190ab45a225/asset-v1:MITx+14.310x+3T2018+type@asset+block/nlsw88.csv). The data has information on labor market outcomes of a representative sample of women in the US. It contains the following variables: the logarithm of wage (lwage), total years of schooling (yrs_school), total experience in the labor markets (ttl_experience), and a dummy variable that indicates whether the woman is black or not. Since we are going to work with this data throughout this homework, please load it into R using the command read.csv\
@@ -282,13 +283,18 @@ a. Reject\
 b. Do not reject\
 ```{r}
 "Significance level observed under null '2(Beta 1) = (Beta 2)' (Probability of observing F > F-test statistic; F-statistic always non-negative)"
-signif_level_obs <- pf(f_stat, df1 = num_rest, df2 = df_unrest, tail.lower = FALSE)
+signif_level_obs <- pf(f_stat, df1 = num_rest, df2 = df_unrest, lower.tail = FALSE)
 signif_level_obs
 
 "Significance level required by 95% confidence level"
 signif_level_req <- 1 - 0.95
 signif_level_req
 
-"Probability of observing F's more extreme than F-test statistic, under null '2(Beta 1) = (Beta 2)', is insignificant (<= required)?"
+"Probability of observing F's more extreme than F-test statistic, under null '2(Beta 1) = (Beta 2)', is insignificant (<= required) => Null can be rejected?"
 signif_level_obs <= signif_level_req
+
+"Null '0(Beta 0) + 2(Beta 1) - (Beta 2) = 0' can be rejected (using automatic hypothesis testing)"
+lwage_s_e.test_0_2_m1 <- linearHypothesis(lwage_s_e.linear, hypothesis.matrix = c(0, 2, -1))
+lwage_s_e.test_0_2_m1
+lwage_s_e.test_0_2_m1[2, "Pr(>F)"] <= signif_level_req
 ```

@@ -1,0 +1,113 @@
+---
+title: "14.310x: Data Analysis for Social Scientists - Homework 10"
+output: html_notebook
+---
+
+
+Welcome to your ninth homework assignment! You will have one week to work through the assignment. We have provided [this PDF](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/6d303d0de53eba270bd698fb917e2611/asset-v1:MITx+14.310x+3T2018+type@asset+block/pset10questions.pdf) copy of the assignment so that you can print and work through the assignment offline. You can also go online directly to complete the assignment. If you choose to work on the assignment using this PDF, please go back to the online platform to submit your answers based on the output produced.\
+Good luck !\
+
+```{r}
+# Preliminaries
+rm(list = ls())
+```
+
+During lecture, Professor Duflo mentioned during the lecture that difference in differences is a statistical tool broadly used by empirical economists. In this problem, we are going to replicate the results of David Card and Alan Krueger's "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania." The accompanying data [fastfood.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/da9013939cb425f9730d4b587a3c51b4/asset-v1:MITx+14.310x+3T2018+type@asset+block/fastfood.csv) was used to study the effects of an increase in the minimum wage on unemployment. Here is the abstract of the study:\
+*On April 1, 1992, New Jersey's minimum wage rose from $4.25 to $5.05 per hour. To evaluate the impact of the law we surveyed 410 fast-food restaurants in New Jersey and eastern Pennsylvania before and after the rise. Comparisons of employment growth at stores in New Jersey and Pennsylvania (where the minimum wage was constant) provide simple estimates of the effect of the higher minimum wage. We also compare employment changes at stores in New Jersey that were initially paying high wages (above $5) to the changes at lower-wage stores. We find no indication that the rise in the minimum wage reduced employment.*\
+The data set contains the following variables:\
+*Note: NJ refers to New Jersey and PA refers to Pennsylvania*\
+* **chain**: 1=Burger King; 2=KFC; 3=Roy Rogers; 4=Wendy's\
+* **state**: 1 if NJ; 0 if PA  \
+* **southj**:  1 if in southern NJ\
+* **centralj**: 1 if in central NJ\
+* **northj**:  1 if in northern NJ\
+* **shore**: 1 if on NJ shore\
+* **pa1**:1 if in PA, northeast suburbs of Philadelphia\
+* **pa2**: 1 if in PA, all other areas besides the northeast suburbs of Philadelphia\
+* **empft**: number of full-time employees before the change in the minimum wage\
+* **emppt**: number of part-time employees before the change in the minimum wage\
+* **wage_st**:   starting wage in the local (per hour) before the change in the minimum wage\
+* **empft2**: number of full-time employees after the change in the minimum wage\
+* **emppt2**: number of part-time employees after the change in the minimum wage\
+* **wage_st2**: starting wage in the local (per hour) after the change in the minimum wage\
+Load the data into R and run a linear model in which you compare whether there are differences between fast-food restaurants located in NJ and Pennsylvania prior to the change in the minimum wage in terms of the number of full-time employees and the starting wage.\
+```{r}
+"Data file"
+data_url <- "https://prod-edxapp.edx-cdn.org/assets/courseware/v1/da9013939cb425f9730d4b587a3c51b4/asset-v1:MITx+14.310x+3T2018+type@asset+block/fastfood.csv"
+data_file <- "Data/fastfood.csv"
+if (!file.exists(data_file)) {
+  download.file(data_url, destfile = data_file, method = "auto")
+}
+data_file
+
+"Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania."
+fastfood <- read.csv(data_file)
+fastfood
+summary(fastfood)
+```
+
+**Question 1**\
+What is the average difference between fast-food restaurants located in NJ and Pennsylvania in terms of the number of full-time employees (before the change in minimum wage)?\
+Please round your answer to the nearest three decimal places.\
+```{r}
+"Linear model of number of full-time employees before the change in the minimum wage (empft) on state"
+empft_state.linear <- lm(empft ~ state, data = fastfood)
+empft_state.summary <- summary(empft_state.linear)
+empft_state.summary
+
+"Average difference between fast-food restaurants located in NJ and Pennsylvania in terms of the number of full-time employees (before the change in minimum wage) (Beta1)"
+empft_state.linear$coefficients["state"]
+```
+
+**Question 2**\
+Is this difference statistically significant at the 1% level?\
+a. Yes\
+b. No\
+```{r}
+"Is this difference statistically significant at the 1% level?"
+empft_state.summary$coefficients["state", "Pr(>|t|)"] < 1/100
+```
+
+**Question 3**\
+Now, let's look at the starting wage. According to the model that you've run, what is the average wage in Pennsylvania prior to the change?\
+Please round your answer to the nearest three decimal places.\
+```{r}
+"Linear model of starting wage in the local (per hour) before the change in the minimum wage (wage_st) on state"
+wage_st_state.linear <- lm(wage_st ~ state, data = fastfood)
+wage_st_state.summary <- summary(wage_st_state.linear)
+wage_st_state.summary
+
+"Average wage in Pennsylvania prior to the change (Beta0)"
+wage_st_state.linear$coefficients["(Intercept)"]
+```
+
+**Question 4**\
+What is the average starting wage in New Jersey?\
+Please round your answer to the nearest three decimal places.\
+```{r}
+"Average starting wage in New Jersey"
+wage_st_state.linear$coefficients["(Intercept)"] + wage_st_state.linear$coefficients["state"]
+```
+
+**Question 5**\
+Can we reject the null hypothesis that the average starting wage is the same in NJ and Pennsylvania prior to the change in the minimum wage?\
+a. Yes\
+b. No\
+```{r}
+"Null hypothesis that the average starting wage is the same in NJ and Pennsylvania prior to the change in the minimum wage (Beta0 - Beta1 = 0)"
+hypothesis_null <- linearHypothesis(wage_st_state.linear, hypothesis.matrix = c(1, -1))
+hypothesis_null
+
+"Can we reject the null at 1% significance level?"
+hypothesis_null[2, "Pr(>F)"] >= 1/100
+```
+
+
+
+
+
+
+
+
+
+

@@ -12,6 +12,8 @@ Good luck !\
 rm(list = ls())
 ```
 
+# Difference in Differences (DiD): Questions 1 - 10\
+
 During lecture, Professor Duflo mentioned during the lecture that difference in differences is a statistical tool broadly used by empirical economists. In this problem, we are going to replicate the results of David Card and Alan Krueger's "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania." The accompanying data [fastfood.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/da9013939cb425f9730d4b587a3c51b4/asset-v1:MITx+14.310x+3T2018+type@asset+block/fastfood.csv) was used to study the effects of an increase in the minimum wage on unemployment. Here is the abstract of the study:\
 *On April 1, 1992, New Jersey's minimum wage rose from $4.25 to $5.05 per hour. To evaluate the impact of the law we surveyed 410 fast-food restaurants in New Jersey and eastern Pennsylvania before and after the rise. Comparisons of employment growth at stores in New Jersey and Pennsylvania (where the minimum wage was constant) provide simple estimates of the effect of the higher minimum wage. We also compare employment changes at stores in New Jersey that were initially paying high wages (above $5) to the changes at lower-wage stores. We find no indication that the rise in the minimum wage reduced employment.*\
 The data set contains the following variables:\
@@ -94,13 +96,125 @@ Can we reject the null hypothesis that the average starting wage is the same in 
 a. Yes\
 b. No\
 ```{r}
-"Null hypothesis that the average starting wage is the same in NJ and Pennsylvania prior to the change in the minimum wage (Beta0 - Beta1 = 0)"
-hypothesis_null <- linearHypothesis(wage_st_state.linear, hypothesis.matrix = c(1, -1))
-hypothesis_null
-
-"Can we reject the null at 1% significance level?"
-hypothesis_null[2, "Pr(>F)"] >= 1/100
+"Can we reject the null hypothesis that the average starting wage is the same in NJ and Pennsylvania prior to the change in the minimum wage (Beta1 = 0)"
+wage_st_state.summary$coefficients["state", "Pr(>|t|)"] <= 5/100
 ```
+
+Now assume that someone pointed out that the northeast suburbs of Philadelphia are very different from the rest of Pennsylvania. This person claims that the model that should be used to estimate the differences between fast food restaurants located in NJ and PA prior to the change is as follows:\
+$$
+full \; time \; employment = \beta_{0} + \beta_{1} state + \beta_{2}  pa1 + \beta_{3} pa2  + \varepsilon
+$$
+
+**Question 6**\
+According to this model above, what would be the average difference in full time employment between the restaurants located in the northeast suburbs of Philadelphia and the rest of Pennsylvania?\
+a. It is given by $\beta_{1}$\
+b. It is given by $\beta_{2} - \beta_{3}$\
+c. It is given by $\beta_{3} - \beta_{2}$\
+d. It is given by $(\beta_{2} + \beta_{3}) - \beta_{1}$\
+e. It is not possible to tell from this model\
+```{r}
+"Average difference in full time employment between the restaurants located in the northeast suburbs of Philadelphia and the rest of Pennsylvania"
+"e. It is not possible to tell from this model - due to collinearity between pa1 and pa2"
+```
+
+Now, let's run the difference in differences model to see whether the change created a difference in the employment. According to what we saw in the lecture, the model to estimate should be the following:\
+$empft_{it} = \beta_{0} + \beta_{1} state_{i} + \beta_{2} post_{t} + \beta_{3} state_{i} \times post_{t} \hspace{10.00mm}$ (equation 1)\
+Where $post_{t}$ is a dummy variable that takes the value of 1 after the change takes place.\
+
+**Question 7**\
+What is the parameter that captures the differences between New Jersey and Pennsylvania prior to the implementation of the change?\
+a. This is given by: $\beta_{1}$\
+b. This is given by: $\beta_{2}$\
+c. This is given by: $\beta_{3}$\
+d. This is given by: $\beta_{3} + \beta_{1} -\beta_{2}$\
+```{r}
+"Parameter that captures the differences between New Jersey and Pennsylvania prior to the implementation of the change"
+"a - by applying 'post = 0' (prior to implementation of change) to equation"
+```
+
+Even though we aim to estimate equation (1), the data we have is "wide," meaning that we have one observation per fast food restaurant, and the different yearly observations are in different variables. Model 1 would require the data to be in the "long" format, with the different years stacked.  We could change the structure of the data to solve this problem.\
+Alternatively, someone has suggested that instead we could run the following model:\
+$empft_{i2}-empft_{i1} = \alpha_{0} + \alpha_{1} state_{i} + \nu_{i} \hspace{10.00mm}$ (equation 2)\
+And that our estimate for $\alpha_{1}$ in equation (2) would be equivalent to $\beta_{3}$ in equation (1).\
+
+**Question 8**\
+Is this statement correct? In other words, is it true that $\alpha_1$ in equation (2) is equivalent to $\beta_3$ in equation (1)?\
+a. Yes\
+b. No\
+```{r}
+"Alpha1 in equation (2) is equivalent to Beta3 in equation (1)"
+"a - both equations are 2 ways of running difference in differences model"
+```
+
+**Question 9**\
+Now estimate model in equation (2) in R, what value do you obtain for the DiD estimate?\
+Do not round. Please input the answer exactly as it appears in the summary output in R.\
+```{r}
+"Add difference in number of full-time employees between after and before the change in the minimum wage to data"
+fastfood$diff_empft <- fastfood$empft2 - fastfood$empft
+fastfood
+
+"Linear model of difference in number of full-time employees between after and before the change in the minimum wage (diff_empft) on state"
+diff_empft_state.linear <- lm(diff_empft ~ state, data = fastfood)
+diff_empft_state.summary <- summary(diff_empft_state.linear)
+diff_empft_state.summary
+
+"DiD estimate (average differnce in differences between New Jersey and Pennsylvania)"
+diff_empft_state.linear$coefficients["state"]
+```
+
+**Question 10**\
+Assuming that we can interpret the estimate for $\alpha_{1}$ as causal and that the minimum wage for these fast-food restaurants is binding, can you conclude that the NJ increase in the minimum wage had a negative effect on full-time employment?\
+a. Yes\
+b. No\
+```{r}
+"Can you conclude that the NJ increase in the minimum wage had a negative effect on full-time employment?"
+"b. No - for estimate for Alpha1 > 0"
+```
+
+# Regression Discontinuity: Questions 11 - 18\
+
+In this part of the homework we are going to replicate the results of David S. Lee paper, who has kindly provided his data to the [Mostly Harmless Econometrics Data Archive](http://economics.mit.edu/faculty/angrist/data1/mhe)\
+Lee (2008) studies the effect of party incumbency on reelection probabilities. In general, Lee is interested in whether a Democratic candidate for a seat in the U.S. House of Representatives has an advantage if his party won the seat last time. Here is the abstract of the working paper version of "The Electoral Advantage to Incumbency and Voters' Valuation of Politicians Experience: A Regression Discontinuity Analysis of Elections to the U.S. Houses"\
+*Using data on elections to the United States House of Representatives (1946-1998), this paper exploits a quasi-experiment generated by the electoral system in order to determine if political incumbency provides an electoral advantage - an implicit first-order prediction of principal-agent theories of politicians and voter behavior. Candidates who just barely won an election (barely became the incumbent) are likely to be ex ante comparable in all other ways to candidates who barely lost, and so their differential electoral outcomes in the next election should represent a true incumbency advantage. The regression discontinuity analysis provides striking evidence that incumbency has a significant causal effect of raising the probability of subsequent electoral success - by about 0.4 to 0.45. Simulations - using estimates from a structural model of individual voting behavior - imply that about two-thirds of the apparent electoral success of incumbents can be attributed to voters' valuation of politicians' experience. The quasi-experimental analysis also suggest that heuristic "fixed effects" and "instrumental variable" modeling approaches would have led to misleading inferences in this context.*\
+We have provided you with the data set [individ_final.csv](https://prod-edxapp.edx-cdn.org/assets/courseware/v1/3e2088d724a880b8d7e4b869e84c50ea/asset-v1:MITx+14.310x+3T2018+type@asset+block/indiv_final.csv). It contains the following variables:\
+* **yearel**: election year\
+* **myoutcomenext**: a dummy variable indicating whether the candidate of the incumbent party was elected\
+* **difshare**: a normalized running variable: proportion of votes of the party in the previous election - $0.5.$ If $difshare \gt 0$ then the candidate runs for the same party as the incumbent.\
+Load this data into R and install the package **rdd** to answer the following questions:\
+```{r}
+# Load packages
+library(rdd)
+
+"Data file"
+data_url <- "https://prod-edxapp.edx-cdn.org/assets/courseware/v1/3e2088d724a880b8d7e4b869e84c50ea/asset-v1:MITx+14.310x+3T2018+type@asset+block/indiv_final.csv"
+data_file <- "Data/indiv_final.csv"
+if (!file.exists(data_file)) {
+  download.file(data_url, destfile = data_file, method = "auto")
+}
+data_file
+
+"Elections to the United States House of Representatives (1946-1998)"
+indiv_final <- read.csv(data_file)
+indiv_final
+summary(indiv_final)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
